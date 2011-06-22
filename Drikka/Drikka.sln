@@ -1,0 +1,70 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drikka.Geo.Geometry", "Drikka.Geo.Geometry\Drikka.Geo.Geometry.csproj", "{1E9DF76E-89E6-458E-854F-043DDF75CEE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{24F6FC62-B681-4003-ACA1-3FF1A5B39760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drikka.Geo.Data.Contracts", "Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj", "{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drikka.Geo.Geometry.Contracts", "Contracts\Drikka.Geo.Geometry.Contracts\Drikka.Geo.Geometry.Contracts.csproj", "{335EF9BD-9A33-4037-B604-87D2696EC9C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drikka.Geo.Data.Postgre", "Drikka.Geo.Data.Postgre\Drikka.Geo.Data.Postgre.csproj", "{BD961174-B739-45CB-B81D-E5831D312470}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drikka.Geo.Data.Mapping", "Drikka.Geo.Data.Mapping\Drikka.Geo.Data.Mapping.csproj", "{79F3CED7-97E9-485D-A872-98861C96AD4C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{93414A06-A37E-455A-B411-288A3700EF9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drikka.Geo.Data.Mapping.Tests.Unit", "Tests\Drikka.Geo.Data.Mapping.Tests.Unit\Drikka.Geo.Data.Mapping.Tests.Unit.csproj", "{6A87A3F0-74FD-4083-A1C3-BC5F72B0784F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2A9832FB-ACD5-4089-B578-0B5C47F51A59}"
+	ProjectSection(SolutionItems) = preProject
+		Drikka.vsmdi = Drikka.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Drikka.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1E9DF76E-89E6-458E-854F-043DDF75CEE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E9DF76E-89E6-458E-854F-043DDF75CEE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E9DF76E-89E6-458E-854F-043DDF75CEE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E9DF76E-89E6-458E-854F-043DDF75CEE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{335EF9BD-9A33-4037-B604-87D2696EC9C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{335EF9BD-9A33-4037-B604-87D2696EC9C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{335EF9BD-9A33-4037-B604-87D2696EC9C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{335EF9BD-9A33-4037-B604-87D2696EC9C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD961174-B739-45CB-B81D-E5831D312470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD961174-B739-45CB-B81D-E5831D312470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD961174-B739-45CB-B81D-E5831D312470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD961174-B739-45CB-B81D-E5831D312470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79F3CED7-97E9-485D-A872-98861C96AD4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F3CED7-97E9-485D-A872-98861C96AD4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F3CED7-97E9-485D-A872-98861C96AD4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F3CED7-97E9-485D-A872-98861C96AD4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A87A3F0-74FD-4083-A1C3-BC5F72B0784F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A87A3F0-74FD-4083-A1C3-BC5F72B0784F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A87A3F0-74FD-4083-A1C3-BC5F72B0784F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A87A3F0-74FD-4083-A1C3-BC5F72B0784F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3} = {24F6FC62-B681-4003-ACA1-3FF1A5B39760}
+		{335EF9BD-9A33-4037-B604-87D2696EC9C6} = {24F6FC62-B681-4003-ACA1-3FF1A5B39760}
+		{6A87A3F0-74FD-4083-A1C3-BC5F72B0784F} = {93414A06-A37E-455A-B411-288A3700EF9A}
+		{2A9832FB-ACD5-4089-B578-0B5C47F51A59} = {93414A06-A37E-455A-B411-288A3700EF9A}
+	EndGlobalSection
+EndGlobal
