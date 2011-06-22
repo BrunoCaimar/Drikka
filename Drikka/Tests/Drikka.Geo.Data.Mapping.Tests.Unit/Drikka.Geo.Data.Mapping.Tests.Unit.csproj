@@ -45,7 +45,15 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Person.cs" />
+    <Compile Include="MapperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Drikka.Geo.Data.Mapping\Drikka.Geo.Data.Mapping.csproj">
+      <Project>{79F3CED7-97E9-485D-A872-98861C96AD4C}</Project>
+      <Name>Drikka.Geo.Data.Mapping</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
