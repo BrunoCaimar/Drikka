@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="6833375c-678e-41b9-9832-b7b3d80d0bdd" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="2cbee645-18d6-4c00-bdf1-0001d3872321" name="Drikka.Geo.Data">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="ee6446dd-dd48-4f56-9c36-1fb391cb651f" direction="Forward">
+          <layerMoniker Id="620f34fc-f73f-4f01-8679-2d68dc3e0670" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="7491481d-62ea-405f-b693-26b84d841263" name="Drikka.Geo.Data">
+          <ArtifactNode Label="Drikka.Geo.Data" Category="CodeSchema_Project" Id="(Assembly=../../Drikka.Geo.Data/Drikka.Geo.Data.csproj)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Drikka.Geo.Data)" Label="Drikka.Geo.Data.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="abf4a1b4-ae83-47de-a823-5bae2e069a1a" name="Drikka.Geo.Data.Mapping">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="7f877e4f-0686-45e6-9b42-5537bdaa8b68" direction="Forward">
+          <layerMoniker Id="620f34fc-f73f-4f01-8679-2d68dc3e0670" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="d0499e88-763c-4d36-ac0f-d307cd099ea9" name="Drikka.Geo.Data.Mapping">
+          <ArtifactNode Label="Drikka.Geo.Data.Mapping" Category="CodeSchema_Project" Id="(Assembly=../../Drikka.Geo.Data.Mapping/Drikka.Geo.Data.Mapping.csproj)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Drikka.Geo.Data.Mapping)" Label="Drikka.Geo.Data.Mapping.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="620f34fc-f73f-4f01-8679-2d68dc3e0670" name="Drikka.Geo.Data.Contracts">
+      <references>
+        <reference Id="c493c647-0953-4e89-97e4-06f970c68705" name="Drikka.Geo.Data.Contracts">
+          <ArtifactNode Label="Drikka.Geo.Data.Contracts" Category="CodeSchema_Project" Id="(Assembly=../../Contracts/Drikka.Geo.Data.Contracts/Drikka.Geo.Data.Contracts.csproj)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Drikka.Geo.Data.Contracts)" Label="Drikka.Geo.Data.Contracts.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="f8ce9078-7516-4dfa-a95f-c7a65ae40ee6" name="Drikka.Geo.Geometry.Contracts">
+      <references>
+        <reference Id="949dceed-4bb3-4346-8f6e-cd5c81b35faa" name="Drikka.Geo.Geometry.Contracts">
+          <ArtifactNode Label="Drikka.Geo.Geometry.Contracts" Category="CodeSchema_Project" Id="(Assembly=../../Contracts/Drikka.Geo.Geometry.Contracts/Drikka.Geo.Geometry.Contracts.csproj)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Drikka.Geo.Geometry.Contracts)" Label="Drikka.Geo.Geometry.Contracts.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="6e3a35ea-5443-4c09-ba2c-f5b31a2eeae0" name="Drikka.Common">
+      <references>
+        <reference Id="c29b6d8a-4915-4ad5-ad03-4c3b4bee4668" name="Drikka.Common">
+          <ArtifactNode Label="Drikka.Common" Category="CodeSchema_Project" Id="(Assembly=../../Drikka.Common/Drikka.Common.csproj)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Drikka.Common)" Label="Drikka.Common.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="aa423c92-10ee-4a32-bf57-063673b8ad98" name="Drikka.Geo.Data.Postgre">
+      <references>
+        <reference Id="e3c6d3b1-0585-4474-9786-82a0dbdfbab0" name="Drikka.Geo.Data.Postgre">
+          <ArtifactNode Label="Drikka.Geo.Data.Postgre" Category="CodeSchema_Project" Id="(Assembly=../../Drikka.Geo.Data.Postgre/Drikka.Geo.Data.Postgre.csproj)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Drikka.Geo.Data.Postgre)" Label="Drikka.Geo.Data.Postgre.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="edd4b47d-6502-4705-8aca-2e46a4ab966b" name="Drikka.Geo.Geometry">
+      <references>
+        <reference Id="fc7a1c45-24cb-4d28-8f1b-0c94d5c4e2e3" name="Drikka.Geo.Geometry">
+          <ArtifactNode Label="Drikka.Geo.Geometry" Category="CodeSchema_Project" Id="(Assembly=../../Drikka.Geo.Geometry/Drikka.Geo.Geometry.csproj)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Drikka.Geo.Geometry)" Label="Drikka.Geo.Geometry.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+  </layers>
+</layerModel>

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Drikka.Geo.Data.Mapping.Tests.Unit.Entities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SharpTestsEx;
 
 namespace Drikka.Geo.Data.Mapping.Tests.Unit
 {
@@ -24,11 +20,21 @@ namespace Drikka.Geo.Data.Mapping.Tests.Unit
         public TestContext TestContext { get; set; }
 
         [TestMethod]
-        public void TestMethod1()
+        public void MapAttribute_Must_Be_Case_Insensitive()
         {
-            //var person = new Person();
-            var mapper = new Mapper<Person>();
-            mapper.MapAttribute(x => x.Name, "Nome");
+            var mapper = new PersonMap();
+            mapper.ExecuteMapping();
+
+            mapper.AttributesMappings.ContainsKey("NOME").Should().Be.True();
+        }
+
+        [TestMethod]
+        public void MapIdentifier_Must_Be_Case_Insensitive()
+        {
+            var mapper = new PersonMap();
+            mapper.ExecuteMapping();
+
+            mapper.IdentifiersMapping.ContainsKey("id").Should().Be.True();
         }
     }
 }

@@ -41,8 +41,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attribute.cs" />
+    <Compile Include="MappingManager.cs" />
+    <Compile Include="SingleIdentifier.cs" />
     <Compile Include="Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Manon\Manon\Manon.csproj">
+      <Project>{403937AA-2AC1-4F0C-8558-26445C2D12B6}</Project>
+      <Name>Manon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
+      <Project>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</Project>
+      <Name>Drikka.Geo.Data.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

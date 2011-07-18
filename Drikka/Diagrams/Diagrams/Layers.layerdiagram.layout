@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerDiagram dslVersion="1.0.0.0" Id="9cd149c8-6048-4e61-bcac-0ae93aceaa14" absoluteBounds="0, 0, 11, 8.5" name="Layers">
+  <layerModelMoniker Id="6833375c-678e-41b9-9832-b7b3d80d0bdd" />
+  <nestedChildShapes>
+    <layerShape Id="0ec41664-c520-448d-bfc8-6c6af5cba670" absoluteBounds="3.125, 1.875, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="2cbee645-18d6-4c00-bdf1-0001d3872321" />
+    </layerShape>
+    <layerShape Id="50003046-0d35-419a-ac5d-99fc95670ce7" absoluteBounds="0.5, 1.875, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="abf4a1b4-ae83-47de-a823-5bae2e069a1a" />
+    </layerShape>
+    <layerShape Id="c6aff659-440d-4de5-bed3-9615c8da45d5" absoluteBounds="1.75, 0.5, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="620f34fc-f73f-4f01-8679-2d68dc3e0670" />
+    </layerShape>
+    <dependencyConnector edgePoints="[(3.4375 : 1.875); (3.4375 : 1.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110">
+      <dependencyFromLayerToLayerMoniker Id="ee6446dd-dd48-4f56-9c36-1fb391cb651f" />
+      <relativeChildShapes />
+      <nodes>
+        <layerShapeMoniker Id="0ec41664-c520-448d-bfc8-6c6af5cba670" />
+        <layerShapeMoniker Id="c6aff659-440d-4de5-bed3-9615c8da45d5" />
+      </nodes>
+    </dependencyConnector>
+    <dependencyConnector edgePoints="[(2.125 : 1.875); (2.125 : 1.25)]" fixedFrom="Algorithm" fixedTo="Algorithm" customColor="113, 111, 110">
+      <dependencyFromLayerToLayerMoniker Id="7f877e4f-0686-45e6-9b42-5537bdaa8b68" />
+      <relativeChildShapes />
+      <nodes>
+        <layerShapeMoniker Id="50003046-0d35-419a-ac5d-99fc95670ce7" />
+        <layerShapeMoniker Id="c6aff659-440d-4de5-bed3-9615c8da45d5" />
+      </nodes>
+    </dependencyConnector>
+    <layerShape Id="3d5e4c4b-7563-4600-b7d0-16fca86d27f3" absoluteBounds="7.75, 0.5, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="f8ce9078-7516-4dfa-a95f-c7a65ae40ee6" />
+    </layerShape>
+    <layerShape Id="dbb1b64e-07d5-4165-8c2d-c969fb7d6b84" absoluteBounds="4.5, 0.5, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="6e3a35ea-5443-4c09-ba2c-f5b31a2eeae0" />
+    </layerShape>
+    <layerShape Id="d7662ce4-616a-4d0c-b523-7f8457d549a2" absoluteBounds="1.75, 3.125, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="aa423c92-10ee-4a32-bf57-063673b8ad98" />
+    </layerShape>
+    <layerShape Id="37a742f2-b2a5-4cef-8683-0413ef581ed3" absoluteBounds="7.75, 2.875, 2, 0.75" customColor="161, 199, 231">
+      <layerMoniker Id="edd4b47d-6502-4705-8aca-2e46a4ab966b" />
+    </layerShape>
+  </nestedChildShapes>
+</layerDiagram>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{da644e70-954a-4a07-bb19-c0e4a388e72c}</ProjectGuid>
+    <ArchitectureToolsVersion>1.0.0.0</ArchitectureToolsVersion>
+    <Name>Diagrams</Name>
+    <RootNamespace>Diagrams</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" />
+  <ItemGroup>
+    <Content Include="Relation.dgml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\Diagrams.uml">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Validate Include="Layers.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="Layers.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="Layers.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers.layerdiagram</DependentUpon>
+    </Validate>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
+      <Name>Drikka.Geo.Data.Contracts</Name>
+      <Project>{c91916b3-d96f-4384-b9de-faf8d9ea55c3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Contracts\Drikka.Geo.Geometry.Contracts\Drikka.Geo.Geometry.Contracts.csproj">
+      <Name>Drikka.Geo.Geometry.Contracts</Name>
+      <Project>{335ef9bd-9a33-4037-b604-87d2696ec9c6}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Drikka.Common\Drikka.Common.csproj">
+      <Name>Drikka.Common</Name>
+      <Project>{3fa6f7f9-c19d-4118-96bf-2b9b9bb192fd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Drikka.Geo.Data.Mapping\Drikka.Geo.Data.Mapping.csproj">
+      <Name>Drikka.Geo.Data.Mapping</Name>
+      <Project>{79f3ced7-97e9-485d-a872-98861c96ad4c}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Drikka.Geo.Data.Postgre\Drikka.Geo.Data.Postgre.csproj">
+      <Name>Drikka.Geo.Data.Postgre</Name>
+      <Project>{bd961174-b739-45cb-b81d-e5831d312470}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Drikka.Geo.Data\Drikka.Geo.Data.csproj">
+      <Name>Drikka.Geo.Data</Name>
+      <Project>{f264430f-08ca-462c-a63a-506930bfd49a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Drikka.Geo.Geometry\Drikka.Geo.Geometry.csproj">
+      <Name>Drikka.Geo.Geometry</Name>
+      <Project>{1e9df76e-89e6-458e-854f-043ddf75cee5}</Project>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

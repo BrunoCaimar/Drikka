@@ -6,11 +6,11 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6A87A3F0-74FD-4083-A1C3-BC5F72B0784F}</ProjectGuid>
+    <ProjectGuid>{C2C59136-9277-44AD-9307-B4B212419FE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Drikka.Geo.Data.Mapping.Tests.Unit</RootNamespace>
-    <AssemblyName>Drikka.Geo.Data.Mapping.Tests.Unit</AssemblyName>
+    <RootNamespace>Drikka.Geo.Data.Tests</RootNamespace>
+    <AssemblyName>Drikka.Geo.Data.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -34,13 +34,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Moq">
+      <HintPath>..\Libs\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="SharpTestsEx">
-      <HintPath>..\..\Libs\SharpTestsEx.dll</HintPath>
+      <HintPath>..\Libs\SharpTestsEx.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -48,21 +52,31 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MapperTest.cs" />
-    <Compile Include="MappingManagerTest.cs" />
-    <Compile Include="PersonMap.cs" />
+    <Compile Include="Binders\ObjectBinderTest.cs" />
+    <Compile Include="Executers\StatementExecuterTests.cs" />
+    <Compile Include="ExecutionPlain\InsertPlainTest.cs" />
+    <Compile Include="ExecutionPlain\QueryPlainTest.cs" />
+    <Compile Include="Mappings\PersonMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
+    <ProjectReference Include="..\Contracts\Drikka.Geo.Common.Contracts\Drikka.Geo.Common.Contracts.csproj">
+      <Project>{9BF4BCD0-DB30-47CD-8A37-35D957C0A57F}</Project>
+      <Name>Drikka.Geo.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
       <Project>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</Project>
       <Name>Drikka.Geo.Data.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Drikka.Geo.Data.Mapping\Drikka.Geo.Data.Mapping.csproj">
+    <ProjectReference Include="..\Drikka.Geo.Data.Mapping\Drikka.Geo.Data.Mapping.csproj">
       <Project>{79F3CED7-97E9-485D-A872-98861C96AD4C}</Project>
       <Name>Drikka.Geo.Data.Mapping</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Drikka.Geo.Tests.Common\Drikka.Geo.Tests.Common.csproj">
+    <ProjectReference Include="..\Drikka.Geo.Data\Drikka.Geo.Data.csproj">
+      <Project>{F264430F-08CA-462C-A63A-506930BFD49A}</Project>
+      <Name>Drikka.Geo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tests\Drikka.Geo.Tests.Common\Drikka.Geo.Tests.Common.csproj">
       <Project>{02B82CDF-E6B2-4AE8-87F2-A686F5601B2A}</Project>
       <Name>Drikka.Geo.Tests.Common</Name>
     </ProjectReference>

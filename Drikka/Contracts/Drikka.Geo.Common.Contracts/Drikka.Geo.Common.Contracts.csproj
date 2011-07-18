@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</ProjectGuid>
+    <ProjectGuid>{9BF4BCD0-DB30-47CD-8A37-35D957C0A57F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Drikka.Geo.Data.Contracts</RootNamespace>
-    <AssemblyName>Drikka.Geo.Data.Contracts</AssemblyName>
+    <RootNamespace>Drikka.Geo.Common.Contracts</RootNamespace>
+    <AssemblyName>Drikka.Geo.Common.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,23 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Binders\IBinder.cs" />
-    <Compile Include="Binders\IBindManager.cs" />
-    <Compile Include="ExecutionPlain\IExecutionPlainManager.cs" />
-    <Compile Include="ExecutionPlain\IOperationPlain.cs" />
-    <Compile Include="ExecutionPlain\IQueryPlain.cs" />
-    <Compile Include="Mapping\IAttribute.cs" />
-    <Compile Include="Mapping\IMapping.cs" />
-    <Compile Include="Mapping\IMappingManager.cs" />
+    <Compile Include="IContainerIoC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Provider\IDataProvider.cs" />
-    <Compile Include="Repository\IDomainRepository.cs" />
-    <Compile Include="TypesMapping\ITypeConverter.cs" />
-    <Compile Include="TypesMapping\ITypeMapping.cs" />
-    <Compile Include="TypesMapping\ITypeRegister.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Criteria\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
