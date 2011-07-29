@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using Drikka.Geo.Data.Contracts.Mapping;
 
 namespace Drikka.Geo.Data.Mapping
@@ -20,6 +21,11 @@ namespace Drikka.Geo.Data.Mapping
         /// </summary>
         public string FieldName { get; private set; }
 
+        /// <summary>
+        /// Dml Formatters
+        /// </summary>
+        public IDictionary<DmlType, string> Formatters { get; private set; }
+
         #endregion
 
         #region Constructor
@@ -33,6 +39,7 @@ namespace Drikka.Geo.Data.Mapping
         {
             this.PropertyInfo = propertyInfo;
             this.FieldName = fieldName;
+            this.Formatters = new Dictionary<DmlType, string>();
         }
 
         #endregion

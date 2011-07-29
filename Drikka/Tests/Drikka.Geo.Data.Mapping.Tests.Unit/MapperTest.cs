@@ -25,7 +25,7 @@ namespace Drikka.Geo.Data.Mapping.Tests.Unit
             var mapper = new PersonMap();
             mapper.ExecuteMapping();
 
-            mapper.AttributesMappings.ContainsKey("NOME").Should().Be.True();
+            mapper.Executing(x => x.GetByFieldName("NOME")).NotThrows();
         }
 
         [TestMethod]
@@ -34,7 +34,7 @@ namespace Drikka.Geo.Data.Mapping.Tests.Unit
             var mapper = new PersonMap();
             mapper.ExecuteMapping();
 
-            mapper.IdentifiersMapping.ContainsKey("id").Should().Be.True();
+            mapper.Executing(x => x.GetByFieldName("id")).NotThrows();
         }
     }
 }

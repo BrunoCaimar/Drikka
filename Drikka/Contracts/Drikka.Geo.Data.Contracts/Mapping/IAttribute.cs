@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 
 namespace Drikka.Geo.Data.Contracts.Mapping
 {
@@ -16,5 +17,10 @@ namespace Drikka.Geo.Data.Contracts.Mapping
         /// Field Name
         /// </summary>
         string FieldName { get; }
+
+        /// <summary>
+        /// Dml Formatters
+        /// </summary>
+        IDictionary<DmlType, string> Formatters { get;}
     }
 }

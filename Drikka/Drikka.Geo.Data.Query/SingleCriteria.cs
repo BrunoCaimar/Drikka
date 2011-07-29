@@ -1,26 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+﻿using Drikka.Geo.Data.Contracts.Query;
 using Drikka.Geo.Data.Query.Operators;
 
 namespace Drikka.Geo.Data.Query
 {
-    public class SingleCriteria<T> : ICriteria<T>
+    public class SingleCriteria<T> : ICriteria<T>, IRestorableQuery<T>
     {
-        private IQuery<T> _rootQuery;
+        private readonly IQuery<T> _rootQuery;
 
-        public SingleCriteria(IQuery<T> rootQuery, PropertyInfo field)
+        public SingleCriteria(IQuery<T> rootQuery, IPredicate<T> predicate, IOperator @operator, object value)
         {
             this._rootQuery = rootQuery;
-            this.Field = field;
+            this.Predicate = predicate;
+            this.Operator = @operator;
+            this.Value = value;
         }
 
-        public PropertyInfo Field { get; private set; }
+        public IPredicate<T> Predicate { get; private set; }
 
-        public IOperator Operator { get; set; }
+        public IOperator Operator { get; private set; }
 
-        public object Value { get; set; }
+        public object Value { get; private set; }
+
+        public IQuery<T> RootQuery
+        {
+            get { return this._rootQuery; }
+        }
     }
 }

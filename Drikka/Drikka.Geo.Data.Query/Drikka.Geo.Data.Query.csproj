@@ -40,12 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Connectors\IConnector.cs" />
-    <Compile Include="ICriteria.cs" />
-    <Compile Include="IPredicate.cs" />
-    <Compile Include="IQuery.cs" />
-    <Compile Include="Operators\IOperator.cs" />
+    <Compile Include="Connectors\And.cs" />
+    <Compile Include="Connectors\Or.cs" />
+    <Compile Include="IRestorableQuery.cs" />
+    <Compile Include="Operators\Equal.cs" />
+    <Compile Include="Operators\GreaterThan.cs" />
+    <Compile Include="Operators\LessThan.cs" />
+    <Compile Include="Operators\NotEqual.cs" />
+    <Compile Include="Predicate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="QueryExtensionMethods.cs" />
@@ -55,6 +57,10 @@
     <ProjectReference Include="..\..\..\Manon\Manon\Manon.csproj">
       <Project>{403937AA-2AC1-4F0C-8558-26445C2D12B6}</Project>
       <Name>Manon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
+      <Project>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</Project>
+      <Name>Drikka.Geo.Data.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

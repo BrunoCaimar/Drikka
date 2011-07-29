@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
+using Drikka.Geo.Data.Contracts.Query;
+using Drikka.Geo.Data.Query.Connectors;
+using Drikka.Geo.Data.Query.Operators;
 using Manon.Extensions.Expressions;
 
 namespace Drikka.Geo.Data.Query
@@ -8,31 +11,55 @@ namespace Drikka.Geo.Data.Query
     {
         public static IPredicate<T> Where<T>(this IQuery<T> query, Expression<Func<T, object>> expression)
         {
-            var criteria = new SingleCriteria<T>(query, expression.GetPropoertyInfo());
+            var criteria = new Predicate<T>(query, expression.GetPropoertyInfo());
 
-            return null;
+            return criteria;
         }
 
         #region Operators
 
         public static ICriteria<T> Equal<T>(this IPredicate<T> predicate, object value)
         {
-            return null;
+            var root = (IRestorableQuery<T>)predicate;
+            var @operator = new Equal();
+            var criteria = new SingleCriteria<T>(root.RootQuery, predicate, @operator, value);
+
+            root.RootQuery.Criterias.Add(criteria);
+
+            return criteria;
         }
 
         public static ICriteria<T> NotEqual<T>(this IPredicate<T> predicate, object value)
         {
-            return null;
+            var root = (IRestorableQuery<T>)predicate;
+            var @operator = new NotEqual();
+            var criteria = new SingleCriteria<T>(root.RootQuery, predicate, @operator, value);
+
+            root.RootQuery.Criterias.Add(criteria);
+
+            return criteria;
         }
 
         public static ICriteria<T> LessThan<T>(this IPredicate<T> predicate, object value)
         {
-            return null;
+            var root = (IRestorableQuery<T>)predicate;
+            var @operator = new LessThan();
+            var criteria = new SingleCriteria<T>(root.RootQuery, predicate, @operator, value);
+
+            root.RootQuery.Criterias.Add(criteria);
+
+            return criteria;
         }
 
         public static ICriteria<T> GreaterThan<T>(this IPredicate<T> predicate, object value)
         {
-            return null;
+            var root = (IRestorableQuery<T>)predicate;
+            var @operator = new GreaterThan();
+            var criteria = new SingleCriteria<T>(root.RootQuery, predicate, @operator, value);
+
+            root.RootQuery.Criterias.Add(criteria);
+
+            return criteria;
         }
 
         #endregion
@@ -41,25 +68,25 @@ namespace Drikka.Geo.Data.Query
 
         public static IPredicate<T> And<T>(this ICriteria<T> criteria, Expression<Func<T, object>> expression)
         {
-            return null;
+            var root = (IRestorableQuery<T>)criteria;
+            var predicate = new Predicate<T>(root.RootQuery, expression.GetPropoertyInfo());
+            var connector = new And();
+            root.RootQuery.Connectors.Add(connector);
+
+            return predicate;
         }
 
         public static IPredicate<T> Or<T>(this ICriteria<T> criteria, Expression<Func<T, object>> expression)
         {
-            return null;
-        }
+            var root = (IRestorableQuery<T>)criteria;
+            var predicate = new Predicate<T>(root.RootQuery, expression.GetPropoertyInfo());
+            var connector = new Or();
+            root.RootQuery.Connectors.Add(connector);
 
-        public static IPredicate<T> And<T>(this ICriteria<T> criteria)
-        {
-            return null;
+            return predicate;
         }
 
         #endregion
-
-        public static IPredicate<T> Brackets<T>(this IPredicate<T> predicate, Expression<Func<Func<Expression<Func<T, object>>, IPredicate<T>>, object>> expression)
-        {
-            return null;
-        }
-
+        
     }
 }

@@ -16,17 +16,17 @@ namespace Drikka.Geo.Data.Contracts.Mapping
         /// <summary>
         /// All Mappings (Attributes and Indentfiers)
         /// </summary>
-        IDictionary<string, IAttribute> AllMapping { get; }
+        IList<IAttribute> AllMapping { get; }
 
         /// <summary>
         /// AttributesMappings
         /// </summary>
-        IDictionary<string, IAttribute> IdentifiersMapping { get; }
+        IList<IAttribute> IdentifiersMapping { get; }
 
         /// <summary>
         /// AttributesMappings
         /// </summary>
-        IDictionary<string, IAttribute> AttributesMappings { get; }
+        IList<IAttribute> AttributesMappings { get; }
 
         /// <summary>
         /// Table Name
@@ -43,5 +43,19 @@ namespace Drikka.Geo.Data.Contracts.Mapping
         /// Execute mapping for a guiven type
         /// </summary>
         void ExecuteMapping();
+
+        /// <summary>
+        /// Get mapping attribute by field name
+        /// </summary>
+        /// <param name="fieldName">field name</param>
+        /// <returns>Attribute</returns>
+        IAttribute GetByFieldName(string fieldName);
+
+        /// <summary>
+        /// Get mapping attribute by attribute name
+        /// </summary>
+        /// <param name="attributeName">attribute name</param>
+        /// <returns>Attribute</returns>
+        IAttribute GetByAttributeName(string attributeName);
     }
 }

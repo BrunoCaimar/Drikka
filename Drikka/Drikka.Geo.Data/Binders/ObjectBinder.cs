@@ -76,7 +76,7 @@ namespace Drikka.Geo.Data.Binders
 
             for (int i = 0; i < record.FieldCount; i++)
             {
-                var att = mappings[record.GetName(i)];
+                var att = this._mapping.GetByFieldName(record.GetName(i));
                 var map = this._typesRegister.Get(att.PropertyInfo.PropertyType);
                 array[i] = new Info() { Attribute =  att, TypeMapping = map};
             }

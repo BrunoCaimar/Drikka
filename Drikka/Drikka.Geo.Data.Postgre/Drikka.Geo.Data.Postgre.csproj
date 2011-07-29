@@ -41,6 +41,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\QueryTranslator.cs" />
+    <Compile Include="Query\TranslateToSqlMethods.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
+      <Project>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</Project>
+      <Name>Drikka.Geo.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drikka.Geo.Data.Query\Drikka.Geo.Data.Query.csproj">
+      <Project>{1796CD23-FA55-44F9-9D38-B87011C36ADD}</Project>
+      <Name>Drikka.Geo.Data.Query</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drikka.Geo.Data\Drikka.Geo.Data.csproj">
+      <Project>{F264430F-08CA-462C-A63A-506930BFD49A}</Project>
+      <Name>Drikka.Geo.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

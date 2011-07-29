@@ -18,9 +18,20 @@ namespace Drikka.Geo.Data.Tests.ExecutionPlain
             var mapping = new PersonMap();
             mapping.ExecuteMapping();
 
-            var select = new QueryPlain(mapping);
+            var select = new QueryPlain(mapping, null);
 
-            select.GetText().ToUpper().Should().Be("SELECT AGE, NAME, ID FROM PERSON");
+            select.GetText().ToUpper().Should().Be("SELECT ID, NAME, AGE FROM PERSON");
+        }
+
+        [TestMethod]
+        public void GetText_Returns_SelectFormatedText()
+        {
+            var mapping = new FormatedPersonMap();
+            mapping.ExecuteMapping();
+
+            var select = new QueryPlain(mapping, null);
+
+            select.GetText().ToUpper().Should().Be("SELECT ID, ASBINARY(NAME) AS NAME, AGE FROM PERSON");
         }
     }
 }

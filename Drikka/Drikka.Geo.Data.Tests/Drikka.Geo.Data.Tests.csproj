@@ -34,8 +34,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mono.Security">
+      <HintPath>..\Libs\Mono.Security.dll</HintPath>
+    </Reference>
     <Reference Include="Moq">
       <HintPath>..\Libs\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\Libs\Npgsql.dll</HintPath>
     </Reference>
     <Reference Include="SharpTestsEx">
       <HintPath>..\Libs\SharpTestsEx.dll</HintPath>
@@ -45,6 +51,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -56,7 +63,9 @@
     <Compile Include="Executers\StatementExecuterTests.cs" />
     <Compile Include="ExecutionPlain\InsertPlainTest.cs" />
     <Compile Include="ExecutionPlain\QueryPlainTest.cs" />
+    <Compile Include="Mappings\FormatedPersonMap.cs" />
     <Compile Include="Mappings\PersonMap.cs" />
+    <Compile Include="Parser\WkbReaderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,13 +77,25 @@
       <Project>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</Project>
       <Name>Drikka.Geo.Data.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Contracts\Drikka.Geo.Geometry.Contracts\Drikka.Geo.Geometry.Contracts.csproj">
+      <Project>{335EF9BD-9A33-4037-B604-87D2696EC9C6}</Project>
+      <Name>Drikka.Geo.Geometry.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Drikka.Geo.Data.Mapping\Drikka.Geo.Data.Mapping.csproj">
       <Project>{79F3CED7-97E9-485D-A872-98861C96AD4C}</Project>
       <Name>Drikka.Geo.Data.Mapping</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Drikka.Geo.Data.Query\Drikka.Geo.Data.Query.csproj">
+      <Project>{1796CD23-FA55-44F9-9D38-B87011C36ADD}</Project>
+      <Name>Drikka.Geo.Data.Query</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Drikka.Geo.Data\Drikka.Geo.Data.csproj">
       <Project>{F264430F-08CA-462C-A63A-506930BFD49A}</Project>
       <Name>Drikka.Geo.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drikka.Geo.Geometry\Drikka.Geo.Geometry.csproj">
+      <Project>{1E9DF76E-89E6-458E-854F-043DDF75CEE5}</Project>
+      <Name>Drikka.Geo.Geometry</Name>
     </ProjectReference>
     <ProjectReference Include="..\Tests\Drikka.Geo.Tests.Common\Drikka.Geo.Tests.Common.csproj">
       <Project>{02B82CDF-E6B2-4AE8-87F2-A686F5601B2A}</Project>

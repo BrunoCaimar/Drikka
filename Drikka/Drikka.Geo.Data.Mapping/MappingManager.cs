@@ -28,7 +28,7 @@ namespace Drikka.Geo.Data.Mapping
         /// </summary>
         public MappingManager()
         {
-            this._mapping = new SortedDictionary<Type, IMapping>();
+            this._mapping = new Dictionary<Type, IMapping>();
         }
 
         #endregion

@@ -43,16 +43,20 @@
     <Compile Include="Binders\BindManager.cs" />
     <Compile Include="Binders\ObjectBinder.cs" />
     <Compile Include="Converters\GenericConverter.cs" />
+    <Compile Include="Converters\WellKnownBinaryConverter.cs" />
     <Compile Include="Executers\StatementExecuter .cs" />
     <Compile Include="ExecutionPlain\ExecutionPlainManager.cs" />
     <Compile Include="ExecutionPlain\InsertPlain.cs" />
     <Compile Include="ExecutionPlain\QueryPlain.cs" />
+    <Compile Include="Parsers\WkbGeometryTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\DataProvider.cs" />
     <Compile Include="Repositories\GenericDomainsRepository.cs" />
     <Compile Include="TypesMapping\BasicTypesMap.cs" />
     <Compile Include="TypesMapping\TypeMap.cs" />
     <Compile Include="TypesMapping\TypeRegister.cs" />
+    <Compile Include="Parsers\WkbByteOrder.cs" />
+    <Compile Include="Parsers\WkbReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Manon\Manon\Manon.csproj">
@@ -62,6 +66,10 @@
     <ProjectReference Include="..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
       <Project>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</Project>
       <Name>Drikka.Geo.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Drikka.Geo.Geometry.Contracts\Drikka.Geo.Geometry.Contracts.csproj">
+      <Project>{335EF9BD-9A33-4037-B604-87D2696EC9C6}</Project>
+      <Name>Drikka.Geo.Geometry.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

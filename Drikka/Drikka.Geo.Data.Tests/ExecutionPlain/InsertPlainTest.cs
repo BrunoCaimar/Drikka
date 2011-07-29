@@ -13,6 +13,7 @@ namespace Drikka.Geo.Data.Tests.ExecutionPlain
     public class InsertPlainTest
     {
         [TestMethod]
+        [Ignore]
         public void GetText_Returns_InsertText()
         {
             var mapping = new PersonMap();

@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Person.cs" />
+    <Compile Include="Entities\Person2.cs" />
     <Compile Include="IoC\NinjectContainer.cs" />
     <Compile Include="IoC\TestModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,6 +69,10 @@
     <ProjectReference Include="..\..\Drikka.Geo.Data.Mapping\Drikka.Geo.Data.Mapping.csproj">
       <Project>{79F3CED7-97E9-485D-A872-98861C96AD4C}</Project>
       <Name>Drikka.Geo.Data.Mapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Drikka.Geo.Data.Postgre\Drikka.Geo.Data.Postgre.csproj">
+      <Project>{BD961174-B739-45CB-B81D-E5831D312470}</Project>
+      <Name>Drikka.Geo.Data.Postgre</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Drikka.Geo.Data\Drikka.Geo.Data.csproj">
       <Project>{F264430F-08CA-462C-A63A-506930BFD49A}</Project>

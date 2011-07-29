@@ -69,7 +69,7 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// <returns>List of parameters</returns>
         public List<IDataParameter> GetParameters(IDbCommand command, object domain)
         {
-            var @params = this._mapping.AttributesMappings.Values.Select(
+            var @params = this._mapping.AttributesMappings.Select(
                     attribute => CreateParameter(command, domain, attribute)).Cast<IDataParameter>().ToList();
 
             //@params.AddRange(
@@ -107,7 +107,7 @@ namespace Drikka.Geo.Data.ExecutionPlain
             text.Append(this._mapping.TableName);
             text.Append(" (");
 
-            var names = this._mapping.AttributesMappings.Values.Select(attribute => attribute.FieldName).ToList();
+            var names = this._mapping.AttributesMappings.Select(attribute => attribute.FieldName).ToList();
             //names.AddRange(this._mapping.IdentifiersMapping.Values.Select(attribute => attribute.FieldName).ToList());
             text.Append(string.Join(", ", names));
 

@@ -5,6 +5,7 @@ using System.Data;
 using Drikka.Geo.Data.Contracts.Binders;
 using Drikka.Geo.Data.Contracts.ExecutionPlain;
 using Drikka.Geo.Data.Contracts.Provider;
+using Drikka.Geo.Data.Contracts.Query;
 
 namespace Drikka.Geo.Data.Executers
 {
@@ -84,18 +85,31 @@ namespace Drikka.Geo.Data.Executers
         public IList Query(Type type)
         {
             var plain = this._plainManager.GetQueryPlain(type);
-            var cmd = this._dataProvider.CreateCommand();
+
+            return ExecuteQuery(plain.GetText(), type);
+        }
+
+        public IList Query<T>(IQuery<T> query)
+        {
+            var plain = this._plainManager.GetQueryPlain(query.QueriedType);
+
+            return ExecuteQuery(plain.GetText(query), query.QueriedType);
+        }
+
+        private IList ExecuteQuery(string sqlText, Type type)
+        {
             var binder = this._bindManager.GetBinder(type);
+            var cmd = this._dataProvider.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = plain.GetText();
+            cmd.CommandText = sqlText;
 
             this._dataProvider.OpenConnection();
             cmd.Prepare();
 
             var list = new List<object>();
 
-            using(var reader = cmd.ExecuteReader(CommandBehavior.Default))
+            using (var reader = cmd.ExecuteReader(CommandBehavior.Default))
             {
                 while (reader.Read())
                 {

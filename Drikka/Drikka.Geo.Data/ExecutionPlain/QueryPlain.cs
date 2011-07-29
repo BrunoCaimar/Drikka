@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Drikka.Geo.Data.Contracts.ExecutionPlain;
 using Drikka.Geo.Data.Contracts.Mapping;
+using Drikka.Geo.Data.Contracts.Query;
 
 namespace Drikka.Geo.Data.ExecutionPlain
 {
@@ -19,6 +21,11 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// </summary>
         private readonly string _query;
 
+        /// <summary>
+        /// Query translator
+        /// </summary>
+        private readonly IQueryTranslator _queryTranslator;
+
         #endregion
 
         #region Constructor
@@ -27,10 +34,12 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// Constructor
         /// </summary>
         /// <param name="mapping">Mappings</param>
-        public QueryPlain(IMapping mapping)
+        /// <param name="queryTranslator">Query translator</param>
+        public QueryPlain(IMapping mapping, IQueryTranslator queryTranslator)
         {
             this._mapping = mapping;
             this._query = CreateQueryHeader();
+            this._queryTranslator = queryTranslator;
         }
 
         #endregion
@@ -46,6 +55,23 @@ namespace Drikka.Geo.Data.ExecutionPlain
             return this._query;
         }
 
+        /// <summary>
+        /// Get command text
+        /// </summary>
+        /// <returns>Insert command text</returns>
+        public string GetText<T>(IQuery<T> query)
+        {
+            var header = this._query;
+            var criteria = this._queryTranslator.Translate(query);
+
+            if (!string.IsNullOrEmpty(criteria) && !string.IsNullOrWhiteSpace(criteria))
+            {
+                return string.Format("{0} WHERE {1}", header, criteria);
+            }
+
+            return header;
+        }
+
         #endregion
 
         #region Private Methods
@@ -56,7 +82,21 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// <returns>SQL select statement</returns>
         private string CreateQueryHeader()
         {
-            var fields = this._mapping.AllMapping.Values.Select(x => x.FieldName.ToUpper()).ToList();
+            var fields = new List<string>();
+
+            foreach (var attribute in this._mapping.AllMapping)
+            {
+                string value = attribute.FieldName;
+                string format;
+
+                if (attribute.Formatters.TryGetValue(DmlType.Select, out format))
+                {
+                    value = string.Format(format, value);
+                }
+
+                fields.Add(value);
+            }
+
             var query = new StringBuilder();
 
             query.Append("SELECT ");

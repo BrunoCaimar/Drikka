@@ -40,6 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IEnvelope.cs" />
+    <Compile Include="IGeometry.cs" />
+    <Compile Include="IGeometryFactory.cs" />
+    <Compile Include="ILinearRing.cs" />
+    <Compile Include="ILineString.cs" />
+    <Compile Include="IMapPoint.cs" />
+    <Compile Include="IPolygon.cs" />
+    <Compile Include="ISpatialReference.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
