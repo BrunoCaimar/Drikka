@@ -60,7 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Binders\ObjectBinderTest.cs" />
-    <Compile Include="Executers\StatementExecuterTests.cs" />
+    <Compile Include="Mappings\CityMap.cs" />
+    <Compile Include="Repositories\GenericDomainsRepositoryTests.cs" />
+    <Compile Include="ExecutionPlain\DeletePlainTest.cs" />
     <Compile Include="ExecutionPlain\InsertPlainTest.cs" />
     <Compile Include="ExecutionPlain\QueryPlainTest.cs" />
     <Compile Include="Mappings\FormatedPersonMap.cs" />

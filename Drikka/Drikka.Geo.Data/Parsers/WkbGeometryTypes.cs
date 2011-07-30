@@ -1,5 +1,8 @@
 ﻿namespace Drikka.Geo.Data.Parsers
 {
+    /// <summary>
+    /// Well known geometry types
+    /// </summary>
     internal enum WkbGeometryTypes : uint
     {
         WkbPoint = 1,

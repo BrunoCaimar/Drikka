@@ -51,6 +51,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\City.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Person2.cs" />
     <Compile Include="IoC\NinjectContainer.cs" />

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
@@ -12,11 +11,10 @@ using Drikka.Geo.Data.Contracts.TypesMapping;
 namespace Drikka.Geo.Data.ExecutionPlain
 {
     /// <summary>
-    /// Plain to execute insert for a given type
+    /// Delete execution plain
     /// </summary>
-    public class InsertPlain : IOperationPlain
+    public class DeletePlain : IOperationPlain
     {
-
         #region Fields
 
         /// <summary>
@@ -43,19 +41,21 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// </summary>
         /// <param name="mapping">Type mapping</param>
         /// <param name="typeRegister">Container</param>
-        public InsertPlain(IMapping mapping, ITypeRegister typeRegister)
+        public DeletePlain(IMapping mapping, ITypeRegister typeRegister)
         {
             this._mapping = mapping;
             this._typeRegister = typeRegister;
-            this._text = this.GetInsertText();
+            this._text = this.GetDeleteText();
         }
 
         #endregion
 
+        #region Public Methods
+        
         /// <summary>
         /// Get command text
         /// </summary>
-        /// <returns>Insert command text</returns>
+        /// <returns>Delete command text</returns>
         public string GetText()
         {
             return this._text;
@@ -69,15 +69,13 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// <returns>List of parameters</returns>
         public List<IDataParameter> GetParameters(IDbCommand command, object domain)
         {
-            var @params = this._mapping.AttributesMappings.Select(
+            var @params = this._mapping.IdentifiersMapping.Select(
                     attribute => CreateParameter(command, domain, attribute)).Cast<IDataParameter>().ToList();
-
-            //@params.AddRange(
-            //    this._mapping.IdentifiersMapping.Values.Select(
-            //        attribute => CreateParameter2(command, domain, attribute)).Cast<IDataParameter>().ToList());
 
             return @params;
         }
+
+        #endregion
 
         #region Private Methods
 
@@ -104,26 +102,19 @@ namespace Drikka.Geo.Data.ExecutionPlain
         }
 
         /// <summary>
-        /// Get command text
+        /// Get the delete text
         /// </summary>
-        /// <returns>Insert command text</returns>
-        private string GetInsertText()
+        /// <returns>Delete Text</returns>
+        private string GetDeleteText()
         {
             var text = new StringBuilder();
-            text.Append("INSERT INTO ");
+            text.Append("DELETE FROM ");
             text.Append(this._mapping.TableName);
-            text.Append(" (");
+            text.Append(" WHERE ");
 
-            var names = this._mapping.AttributesMappings.Select(attribute => attribute.FieldName).ToList();
-            //names.AddRange(this._mapping.IdentifiersMapping.Values.Select(attribute => attribute.FieldName).ToList());
-            text.Append(string.Join(", ", names));
-
-            text.Append(") VALUES (");
-
-            var @params = names.Select(x => string.Format("@{0}", x)).ToList();
+            var names = this._mapping.IdentifiersMapping.Select(attribute => attribute.FieldName).ToList();
+            var @params = names.Select(x => string.Format("{0} = @{0}", x)).ToList();
             text.Append(string.Join(", ", @params));
-
-            text.Append(")");
 
             return text.ToString();
         }

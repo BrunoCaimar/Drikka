@@ -6,6 +6,9 @@
         <dependencyFromLayerToLayer Id="ee6446dd-dd48-4f56-9c36-1fb391cb651f" direction="Forward">
           <layerMoniker Id="620f34fc-f73f-4f01-8679-2d68dc3e0670" />
         </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="06596e58-d662-4270-b25e-05b4a73f5200" direction="Forward">
+          <layerMoniker Id="f8ce9078-7516-4dfa-a95f-c7a65ae40ee6" />
+        </dependencyFromLayerToLayer>
       </dependencyToLayers>
       <references>
         <reference Id="7491481d-62ea-405f-b693-26b84d841263" name="Drikka.Geo.Data">
@@ -64,6 +67,11 @@
       </references>
     </layer>
     <layer Id="6e3a35ea-5443-4c09-ba2c-f5b31a2eeae0" name="Drikka.Common">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="e909a1b5-50b1-42d2-ae63-98681006cbe2" direction="Forward">
+          <layerMoniker Id="4eaaa74d-9873-40e5-82d9-683b6804a16f" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
       <references>
         <reference Id="c29b6d8a-4915-4ad5-ad03-4c3b4bee4668" name="Drikka.Common">
           <ArtifactNode Label="Drikka.Common" Category="CodeSchema_Project" Id="(Assembly=../../Drikka.Common/Drikka.Common.csproj)">
@@ -77,6 +85,14 @@
       </references>
     </layer>
     <layer Id="aa423c92-10ee-4a32-bf57-063673b8ad98" name="Drikka.Geo.Data.Postgre">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="6e6e0a40-80d4-4a34-a2de-5fc20df9d5b9" direction="Forward">
+          <layerMoniker Id="620f34fc-f73f-4f01-8679-2d68dc3e0670" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="d13e96de-0fe9-44d4-adea-cd5cd494f69f" direction="Forward">
+          <layerMoniker Id="b0504c03-4145-4cc2-939d-d8735d2d1774" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
       <references>
         <reference Id="e3c6d3b1-0585-4474-9786-82a0dbdfbab0" name="Drikka.Geo.Data.Postgre">
           <ArtifactNode Label="Drikka.Geo.Data.Postgre" Category="CodeSchema_Project" Id="(Assembly=../../Drikka.Geo.Data.Postgre/Drikka.Geo.Data.Postgre.csproj)">
@@ -90,12 +106,48 @@
       </references>
     </layer>
     <layer Id="edd4b47d-6502-4705-8aca-2e46a4ab966b" name="Drikka.Geo.Geometry">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="a13d9b47-e71c-4490-95cc-ba62b4f63f3d" direction="Forward">
+          <layerMoniker Id="f8ce9078-7516-4dfa-a95f-c7a65ae40ee6" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
       <references>
         <reference Id="fc7a1c45-24cb-4d28-8f1b-0c94d5c4e2e3" name="Drikka.Geo.Geometry">
           <ArtifactNode Label="Drikka.Geo.Geometry" Category="CodeSchema_Project" Id="(Assembly=../../Drikka.Geo.Geometry/Drikka.Geo.Geometry.csproj)">
             <Category Ref="CodeSchema_SourceFile" />
           </ArtifactNode>
           <ExpandedNode Id="(Assembly=Drikka.Geo.Geometry)" Label="Drikka.Geo.Geometry.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="4eaaa74d-9873-40e5-82d9-683b6804a16f" name="Drikka.Geo.Common.Contracts">
+      <references>
+        <reference Id="81a1f458-53b1-46a9-8dbc-1ad111fc876e" name="Drikka.Geo.Common.Contracts">
+          <ArtifactNode Label="Drikka.Geo.Common.Contracts" Category="CodeSchema_Project" Id="(Assembly=../../Contracts/Drikka.Geo.Common.Contracts/Drikka.Geo.Common.Contracts.csproj)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Drikka.Geo.Common.Contracts)" Label="Drikka.Geo.Common.Contracts.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="b0504c03-4145-4cc2-939d-d8735d2d1774" name="Drikka.Geo.Data.Query">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="9a899097-aaef-4ef5-bf60-c8b22ef7bc9e" direction="Forward">
+          <layerMoniker Id="620f34fc-f73f-4f01-8679-2d68dc3e0670" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="c3a5c423-5af4-4951-b5eb-094a4ca24787" name="Drikka.Geo.Data.Query">
+          <ArtifactNode Label="Drikka.Geo.Data.Query" Category="CodeSchema_Project" Id="(Assembly=../../Drikka.Geo.Data.Query/Drikka.Geo.Data.Query.csproj)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Drikka.Geo.Data.Query)" Label="Drikka.Geo.Data.Query.dll" Category="FileSystem.Category.FileOfType.dll">
             <LinkCategory Ref="Produces" />
             <LinkCategory Ref="Represents" />
           </ExpandedNode>

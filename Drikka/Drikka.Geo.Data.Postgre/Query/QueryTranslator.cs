@@ -8,14 +8,36 @@ using Drikka.Geo.Data.Query.Operators;
 
 namespace Drikka.Geo.Data.Postgre.Query
 {
+    /// <summary>
+    /// Query translator
+    /// </summary>
     public class QueryTranslator : IQueryTranslator
     {
+        #region Fields
+        
+        /// <summary>
+        /// Mapping manager
+        /// </summary>
         private readonly IMappingManager _mappingManager;
 
+        /// <summary>
+        /// Operators available
+        /// </summary>
         private readonly IDictionary<Type, Func<IOperator, string, object, string>> _operators;
 
+        /// <summary>
+        /// Connector available
+        /// </summary>
         private readonly IDictionary<Type, Func<IConnector, string>> _connectors;
 
+        #endregion
+
+        #region Constructor
+        
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="mappingManager">Mapping manager</param>
         public QueryTranslator(IMappingManager mappingManager)
         {
             this._mappingManager = mappingManager;
@@ -23,6 +45,16 @@ namespace Drikka.Geo.Data.Postgre.Query
             this._connectors = MapConnectors();
         }
 
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Translate query
+        /// </summary>
+        /// <typeparam name="T">Domain type</typeparam>
+        /// <param name="query">Query</param>
+        /// <returns>Query translated</returns>
         public string Translate<T>(IQuery<T> query)
         {
             var map = this._mappingManager.GetMapping(query.QueriedType);
@@ -48,8 +80,14 @@ namespace Drikka.Geo.Data.Postgre.Query
             return sql.ToString();
         }
 
+        #endregion
 
+        #region Private Methods
 
+        /// <summary>
+        /// Map operators
+        /// </summary>
+        /// <returns>Operators</returns>
         private static IDictionary<Type, Func<IOperator, string, object, string>> MapOperators()
         {
             var map = new Dictionary<Type, Func<IOperator, string, object, string>>();
@@ -61,6 +99,10 @@ namespace Drikka.Geo.Data.Postgre.Query
             return map;
         }
 
+        /// <summary>
+        /// Map connectors
+        /// </summary>
+        /// <returns>Connectors</returns>
         private static IDictionary<Type, Func<IConnector, string>> MapConnectors()
         {
             var map = new Dictionary<Type, Func<IConnector, string>>();
@@ -70,5 +112,8 @@ namespace Drikka.Geo.Data.Postgre.Query
 
             return map;
         }
+
+        #endregion
+
     }
 }

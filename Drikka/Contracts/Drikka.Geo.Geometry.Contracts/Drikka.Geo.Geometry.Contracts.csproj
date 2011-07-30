@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IEnvelope.cs" />
+    <Compile Include="IFeatureSet.cs" />
     <Compile Include="IGeometry.cs" />
     <Compile Include="IGeometryFactory.cs" />
     <Compile Include="ILinearRing.cs" />

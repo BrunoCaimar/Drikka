@@ -3,7 +3,7 @@
     /// <summary>
     /// Specifies the specific binary encoding (NDR or XDR) used for a geometry byte stream
     /// </summary>
-    public enum WkbByteOrder : byte
+    internal enum WkbByteOrder : byte
     {
         /// <summary>
         /// XDR (Big Endian) Encoding of Numeric Types

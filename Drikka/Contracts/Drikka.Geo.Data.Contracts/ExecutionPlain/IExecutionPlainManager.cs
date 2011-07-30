@@ -20,5 +20,12 @@ namespace Drikka.Geo.Data.Contracts.ExecutionPlain
         /// <param name="type">Type</param>
         /// <returns>Plain</returns>
         IQueryPlain GetQueryPlain(Type type);
+
+        /// <summary>
+        /// Get delete plain for a given type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Plain</returns>
+        IOperationPlain GetDeletePlain(Type type);
     }
 }

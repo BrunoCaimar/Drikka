@@ -7,6 +7,9 @@ using Manon.Extensions.Expressions;
 
 namespace Drikka.Geo.Data.Query
 {
+    /// <summary>
+    /// Query extension methods
+    /// </summary>
     public static class QueryExtensionMethods
     {
         public static IPredicate<T> Where<T>(this IQuery<T> query, Expression<Func<T, object>> expression)

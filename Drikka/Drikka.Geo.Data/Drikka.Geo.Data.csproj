@@ -44,7 +44,7 @@
     <Compile Include="Binders\ObjectBinder.cs" />
     <Compile Include="Converters\GenericConverter.cs" />
     <Compile Include="Converters\WellKnownBinaryConverter.cs" />
-    <Compile Include="Executers\StatementExecuter .cs" />
+    <Compile Include="ExecutionPlain\DeletePlain.cs" />
     <Compile Include="ExecutionPlain\ExecutionPlainManager.cs" />
     <Compile Include="ExecutionPlain\InsertPlain.cs" />
     <Compile Include="ExecutionPlain\QueryPlain.cs" />

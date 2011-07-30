@@ -39,6 +39,10 @@
     </Validate>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\Drikka.Geo.Common.Contracts\Drikka.Geo.Common.Contracts.csproj">
+      <Name>Drikka.Geo.Common.Contracts</Name>
+      <Project>{9bf4bcd0-db30-47cd-8a37-35d957c0a57f}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
       <Name>Drikka.Geo.Data.Contracts</Name>
       <Project>{c91916b3-d96f-4384-b9de-faf8d9ea55c3}</Project>
@@ -58,6 +62,10 @@
     <ProjectReference Include="..\..\Drikka.Geo.Data.Postgre\Drikka.Geo.Data.Postgre.csproj">
       <Name>Drikka.Geo.Data.Postgre</Name>
       <Project>{bd961174-b739-45cb-b81d-e5831d312470}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Drikka.Geo.Data.Query\Drikka.Geo.Data.Query.csproj">
+      <Name>Drikka.Geo.Data.Query</Name>
+      <Project>{1796cd23-fa55-44f9-9d38-b87011c36add}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\Drikka.Geo.Data\Drikka.Geo.Data.csproj">
       <Name>Drikka.Geo.Data</Name>

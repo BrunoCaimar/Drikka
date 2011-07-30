@@ -6,6 +6,9 @@ using Drikka.Geo.Data.Contracts.TypesMapping;
 
 namespace Drikka.Geo.Data.ExecutionPlain
 {
+    /// <summary>
+    /// Execution Plain Manager
+    /// </summary>
     public class ExecutionPlainManager : IExecutionPlainManager
     {
         #region Fields
@@ -67,9 +70,22 @@ namespace Drikka.Geo.Data.ExecutionPlain
         public virtual IQueryPlain GetQueryPlain(Type type)
         {
             var map = this._mappingManager.GetMapping(type);
-            var query = new QueryPlain(map, this._queryTranslator);
+            var query = new QueryPlain(map, this._queryTranslator, this._typeRegister);
 
             return query;
+        }
+
+        /// <summary>
+        /// Get delete plain for a given type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>Plain</returns>
+        public virtual IOperationPlain GetDeletePlain(Type type)
+        {
+            var map = this._mappingManager.GetMapping(type);
+            var delete = new DeletePlain(map, this._typeRegister);
+
+            return delete;
         }
 
         #endregion

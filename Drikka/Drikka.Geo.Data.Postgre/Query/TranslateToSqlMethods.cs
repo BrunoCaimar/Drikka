@@ -3,6 +3,9 @@ using Drikka.Geo.Data.Contracts.Query;
 
 namespace Drikka.Geo.Data.Postgre.Query
 {
+    /// <summary>
+    /// Translate functions
+    /// </summary>
     public static class TranslateToSqlMethods
     {
         #region Operators

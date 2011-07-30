@@ -31,9 +31,10 @@ namespace Drikka.Geo.Data.Contracts.Repository
         /// <summary>
         /// Get the domain object by id
         /// </summary>
+        /// <param name="type">Type</param>
         /// <param name="id">id</param>
         /// <returns>domain object</returns>
-        object Get(object id);
+        object Get(Type type,object id);
 
         /// <summary>
         /// Get all domains of passed type
