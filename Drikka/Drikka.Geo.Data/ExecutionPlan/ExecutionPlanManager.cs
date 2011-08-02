@@ -1,15 +1,15 @@
 ﻿using System;
-using Drikka.Geo.Data.Contracts.ExecutionPlain;
+using Drikka.Geo.Data.Contracts.ExecutionPlan;
 using Drikka.Geo.Data.Contracts.Mapping;
 using Drikka.Geo.Data.Contracts.Query;
 using Drikka.Geo.Data.Contracts.TypesMapping;
 
-namespace Drikka.Geo.Data.ExecutionPlain
+namespace Drikka.Geo.Data.ExecutionPlan
 {
     /// <summary>
-    /// Execution Plain Manager
+    /// Execution plan Manager
     /// </summary>
-    public class ExecutionPlainManager : IExecutionPlainManager
+    public class ExecutionPlanManager : IExecutionPlanManager
     {
         #region Fields
 
@@ -38,7 +38,7 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// <param name="mappingManager">Mapping Manager</param>
         /// <param name="typeRegister">Types Register</param>
         /// <param name="queryTranslator">Query translator</param>
-        public ExecutionPlainManager(IMappingManager mappingManager, ITypeRegister typeRegister, IQueryTranslator queryTranslator)
+        public ExecutionPlanManager(IMappingManager mappingManager, ITypeRegister typeRegister, IQueryTranslator queryTranslator)
         {
             this._mappingManager = mappingManager;
             this._typeRegister = typeRegister;
@@ -47,43 +47,43 @@ namespace Drikka.Geo.Data.ExecutionPlain
 
         #endregion
 
-        #region IExecutionPlainManager Implementation
+        #region IExecutionplanManager Implementation
         
         /// <summary>
-        /// Get insert plain for a given type
+        /// Get insert plan for a given type
         /// </summary>
         /// <param name="type">Type</param>
-        /// <returns>Plain</returns>
-        public virtual IOperationPlain GetInsertPlain(Type type)
+        /// <returns>plan</returns>
+        public virtual IOperationPlan GetInsertplan(Type type)
         {
             var map = this._mappingManager.GetMapping(type);
-            var insert = new InsertPlain(map, this._typeRegister);
+            var insert = new InsertPlan(map, this._typeRegister);
 
             return insert;
         }
 
         /// <summary>
-        /// Get select plain for a given type
+        /// Get select plan for a given type
         /// </summary>
         /// <param name="type">Type</param>
-        /// <returns>Plain</returns>
-        public virtual IQueryPlain GetQueryPlain(Type type)
+        /// <returns>plan</returns>
+        public virtual IQueryPlan GetQueryplan(Type type)
         {
             var map = this._mappingManager.GetMapping(type);
-            var query = new QueryPlain(map, this._queryTranslator, this._typeRegister);
+            var query = new QueryPlan(map, this._queryTranslator, this._typeRegister);
 
             return query;
         }
 
         /// <summary>
-        /// Get delete plain for a given type
+        /// Get delete plan for a given type
         /// </summary>
         /// <param name="type">Type</param>
-        /// <returns>Plain</returns>
-        public virtual IOperationPlain GetDeletePlain(Type type)
+        /// <returns>plan</returns>
+        public virtual IOperationPlan GetDeleteplan(Type type)
         {
             var map = this._mappingManager.GetMapping(type);
-            var delete = new DeletePlain(map, this._typeRegister);
+            var delete = new DeletePlan(map, this._typeRegister);
 
             return delete;
         }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Drikka.Geo.Data.Contracts.Binders;
-using Drikka.Geo.Data.Contracts.ExecutionPlain;
+using Drikka.Geo.Data.Contracts.ExecutionPlan;
 using Drikka.Geo.Data.Contracts.Provider;
 using Drikka.Geo.Data.Contracts.Query;
 using Drikka.Geo.Data.Contracts.Repository;
@@ -20,9 +20,9 @@ namespace Drikka.Geo.Data.Repositories
         private readonly IDataProvider _dataProvider;
 
         /// <summary>
-        /// Execute Plain Manager
+        /// Execute plan Manager
         /// </summary>
-        private readonly IExecutionPlainManager _plainManager;
+        private readonly IExecutionPlanManager _planManager;
 
         /// <summary>
         /// Object Bind Manager
@@ -37,12 +37,12 @@ namespace Drikka.Geo.Data.Repositories
         /// Constructor
         /// </summary>
         /// <param name="dataProvider">DataProvider</param>
-        /// <param name="plainManager">Execute Plain Manager</param>
+        /// <param name="planManager">Execute plan Manager</param>
         /// <param name="bindManager">Bind Manager</param>
-        public GenericDomainsRepository(IDataProvider dataProvider, IExecutionPlainManager plainManager, IBindManager bindManager)
+        public GenericDomainsRepository(IDataProvider dataProvider, IExecutionPlanManager planManager, IBindManager bindManager)
         {
             this._dataProvider = dataProvider;
-            this._plainManager = plainManager;
+            this._planManager = planManager;
             this._bindManager = bindManager;
         }
 
@@ -58,12 +58,12 @@ namespace Drikka.Geo.Data.Repositories
         {
             throw new NotImplementedException();
 
-            //var plain = this._plainManager.GetInsertPlain(domain.GetType());
+            //var plan = this._planManager.GetInsertplan(domain.GetType());
             //var cmd = this._dataProvider.CreateCommand();
 
             //cmd.CommandType = CommandType.Text;
-            //cmd.CommandText = plain.GetText();
-            //plain.GetParameters(cmd, domain).ForEach(x => cmd.Parameters.Add(x));
+            //cmd.CommandText = plan.GetText();
+            //plan.GetParameters(cmd, domain).ForEach(x => cmd.Parameters.Add(x));
 
             //this._dataProvider.OpenConnection();
 
@@ -96,9 +96,9 @@ namespace Drikka.Geo.Data.Repositories
         /// <returns>List of domains</returns>
         public IList GetAll(Type type)
         {
-            var plain = this._plainManager.GetQueryPlain(type);
+            var plan = this._planManager.GetQueryplan(type);
 
-            return ExecuteQuery(plain.GetText(), type);
+            return ExecuteQuery(plan.GetText(), type);
         }
 
         /// <summary>
@@ -109,12 +109,12 @@ namespace Drikka.Geo.Data.Repositories
         /// <returns>List of domains</returns>
         public object Get(Type type, object id)
         {
-            var plain = this._plainManager.GetQueryPlain(type);
+            var plan = this._planManager.GetQueryplan(type);
             var cmd = this._dataProvider.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = plain.GetTextById();
+            cmd.CommandText = plan.GetTextById();
 
-            cmd.Parameters.Add(plain.GetParameter(cmd, id));
+            cmd.Parameters.Add(plan.GetParameter(cmd, id));
 
             return FirstOrDefault(ExecuteQuery(cmd, type));
         }
@@ -130,12 +130,12 @@ namespace Drikka.Geo.Data.Repositories
         /// <param name="domain">Domain</param>
         public void Delete(object domain)
         {
-            var plain = this._plainManager.GetDeletePlain(domain.GetType());
+            var plan = this._planManager.GetDeleteplan(domain.GetType());
             var cmd = this._dataProvider.CreateCommand();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = plain.GetText();
+            cmd.CommandText = plan.GetText();
 
-            plain.GetParameters(cmd, domain).ForEach(x => cmd.Parameters.Add(x));
+            plan.GetParameters(cmd, domain).ForEach(x => cmd.Parameters.Add(x));
 
             this.ExecuteCommand(cmd);
         }
@@ -148,9 +148,9 @@ namespace Drikka.Geo.Data.Repositories
         /// <returns>List of domains</returns>
         public IList Query<T>(IQuery<T> query)
         {
-            var plain = this._plainManager.GetQueryPlain(query.QueriedType);
+            var plan = this._planManager.GetQueryplan(query.QueriedType);
 
-            return ExecuteQuery(plain.GetText(query), query.QueriedType);
+            return ExecuteQuery(plan.GetText(query), query.QueriedType);
         }
 
         #endregion

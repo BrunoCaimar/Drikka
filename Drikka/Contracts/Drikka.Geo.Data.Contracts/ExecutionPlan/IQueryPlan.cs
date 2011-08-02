@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using Drikka.Geo.Data.Contracts.Query;
 
-namespace Drikka.Geo.Data.Contracts.ExecutionPlain
+namespace Drikka.Geo.Data.Contracts.ExecutionPlan
 {
-    public interface IQueryPlain
+    public interface IQueryPlan
     {
         /// <summary>
         /// Get command text

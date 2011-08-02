@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Drikka.Geo.Data.Contracts.ExecutionPlain;
+using Drikka.Geo.Data.Contracts.ExecutionPlan;
 using Drikka.Geo.Data.Contracts.Mapping;
 using Drikka.Geo.Data.Contracts.TypesMapping;
 
-namespace Drikka.Geo.Data.ExecutionPlain
+namespace Drikka.Geo.Data.ExecutionPlan
 {
     /// <summary>
-    /// Plain to execute insert for a given type
+    /// plan to execute insert for a given type
     /// </summary>
-    public class InsertPlain : IOperationPlain
+    public class InsertPlan : IOperationPlan
     {
 
         #region Fields
@@ -43,7 +42,7 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// </summary>
         /// <param name="mapping">Type mapping</param>
         /// <param name="typeRegister">Container</param>
-        public InsertPlain(IMapping mapping, ITypeRegister typeRegister)
+        public InsertPlan(IMapping mapping, ITypeRegister typeRegister)
         {
             this._mapping = mapping;
             this._typeRegister = typeRegister;

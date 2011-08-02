@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using Drikka.Geo.Data.Contracts.ExecutionPlain;
+using Drikka.Geo.Data.Contracts.ExecutionPlan;
 using Drikka.Geo.Data.Contracts.Mapping;
 using Drikka.Geo.Data.Contracts.Query;
 using Drikka.Geo.Data.Contracts.TypesMapping;
 
-namespace Drikka.Geo.Data.ExecutionPlain
+namespace Drikka.Geo.Data.ExecutionPlan
 {
-    public class QueryPlain : IQueryPlain
+    public class QueryPlan : IQueryPlan
     {
         #region Fields
         
@@ -46,7 +43,7 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// <param name="mapping">Mappings</param>
         /// <param name="queryTranslator">Query translator</param>
         /// <param name="typeRegister">Type Register</param>
-        public QueryPlain(IMapping mapping, IQueryTranslator queryTranslator, ITypeRegister typeRegister)
+        public QueryPlan(IMapping mapping, IQueryTranslator queryTranslator, ITypeRegister typeRegister)
         {
             this._mapping = mapping;
             this._query = CreateQueryHeader();
@@ -56,7 +53,7 @@ namespace Drikka.Geo.Data.ExecutionPlain
 
         #endregion
 
-        #region IQueryPlain Implementation
+        #region IQueryplan Implementation
 
         /// <summary>
         /// Get command text

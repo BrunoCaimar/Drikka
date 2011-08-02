@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Drikka.Geo.Data.Contracts.TypesMapping;
 using Drikka.Geo.Data.Converters;
-using Drikka.Geo.Data.ExecutionPlain;
+using Drikka.Geo.Data.ExecutionPlan;
 using Drikka.Geo.Data.Tests.Mappings;
 using Drikka.Geo.Data.TypesMapping;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,7 +10,7 @@ using SharpTestsEx;
 namespace Drikka.Geo.Data.Tests.ExecutionPlain
 {
     [TestClass]
-    public class InsertPlainTest
+    public class InsertPlanTest
     {
         [TestMethod]
         [Ignore]
@@ -28,7 +28,7 @@ namespace Drikka.Geo.Data.Tests.ExecutionPlain
 
             var register = mock.Object;
 
-            var insert = new InsertPlain(mapping, register);
+            var insert = new InsertPlan(mapping, register);
             var text = insert.GetText();
 
             text.ToUpper().Should().Be("INSERT INTO PERSON (AGE, NAME, ID) VALUES (@AGE, @NAME, @ID)");

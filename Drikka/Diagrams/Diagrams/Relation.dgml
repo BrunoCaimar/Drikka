@@ -13,7 +13,7 @@
     <Node Id="(@16)" Category="CodeSchema_SourceFile" FilePath="$(VsSolutionUri)/Drikka.Geo.Data/Operations/QueryCommand.cs" Label="QueryCommand.cs">
       <Category Ref="CodeSchema_ProjectItem" />
     </Node>
-    <Node Id="(@17)" Category="CodeSchema_SourceFile" FilePath="$(VsSolutionUri)/Drikka.Geo.Data/ExecutionPlain/InsertPlain.cs" Label="InsertPlain.cs">
+    <Node Id="(@17)" Category="CodeSchema_SourceFile" FilePath="$(VsSolutionUri)/Drikka.Geo.Data/Executionplan/Insertplan.cs" Label="Insertplan.cs">
       <Category Ref="CodeSchema_ProjectItem" />
     </Node>
     <Node Id="(@18)" Category="CodeSchema_SourceFile" FilePath="$(VsSolutionUri)/Drikka.Geo.Data/Properties/AssemblyInfo.cs" Label="AssemblyInfo.cs">
@@ -37,7 +37,7 @@
     <Node Id="@2" Category="ProjectFolder" FilePath="$(VsSolutionUri)/Drikka.Geo.Data/TypesMapping/" Label="TypesMapping">
       <Category Ref="CodeSchema_ProjectItem" />
     </Node>
-    <Node Id="@4" Category="ProjectFolder" FilePath="$(VsSolutionUri)/Drikka.Geo.Data/ExecutionPlain/" Label="ExecutionPlain">
+    <Node Id="@4" Category="ProjectFolder" FilePath="$(VsSolutionUri)/Drikka.Geo.Data/Executionplan/" Label="Executionplan">
       <Category Ref="CodeSchema_ProjectItem" />
     </Node>
     <Node Id="@6" Category="ProjectFolder" FilePath="$(VsSolutionUri)/Drikka.Geo.Data/Properties/" Label="Properties">
@@ -107,7 +107,7 @@
   <IdentifierAliases>
     <Alias n="1" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/TypesMapping/" />
     <Alias n="2" Id="(@1)" />
-    <Alias n="3" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/ExecutionPlain/" />
+    <Alias n="3" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/Executionplan/" />
     <Alias n="4" Id="(@3)" />
     <Alias n="5" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/Properties/" />
     <Alias n="6" Id="(@5)" />
@@ -121,7 +121,7 @@
     <Alias n="14" Uri="Assembly=$(VsSolutionUri)/Drikka.Common/Drikka.Common.csproj" />
     <Alias n="15" Uri="Assembly=$(VsSolutionUri)/Contracts/Drikka.Geo.Data.Contracts/Drikka.Geo.Data.Contracts.csproj" />
     <Alias n="16" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/Operations/QueryCommand.cs" />
-    <Alias n="17" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/ExecutionPlain/InsertPlain.cs" />
+    <Alias n="17" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/Executionplan/Insertplan.cs" />
     <Alias n="18" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/Properties/AssemblyInfo.cs" />
     <Alias n="19" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/TypesMapping/TypeMap.cs" />
     <Alias n="20" Uri="Assembly=$(VsSolutionUri)/Drikka.Geo.Data/Converters/GenericConverter.cs" />

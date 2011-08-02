@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 
-namespace Drikka.Geo.Data.Contracts.ExecutionPlain
+namespace Drikka.Geo.Data.Contracts.ExecutionPlan
 {
     /// <summary>
-    /// Plain to execute a command
+    /// plan to execute a command
     /// </summary>
-    public interface IOperationPlain
+    public interface IOperationPlan
     {
         /// <summary>
         /// Get command text

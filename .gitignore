@@ -36,3 +36,7 @@
 /Drikka/TestResults
 /Drikka/Tests/Drikka.Geo.Data.Postgre.Tests/bin
 /Drikka/Tests/Drikka.Geo.Data.Postgre.Tests/obj
+/Drikka/Drikka.Helpers/bin
+/Drikka/Drikka.Helpers/obj
+/Drikka/Tests/Drikka.Helpers.Tests/obj
+/Drikka/Tests/Drikka.Helpers.Tests/bin

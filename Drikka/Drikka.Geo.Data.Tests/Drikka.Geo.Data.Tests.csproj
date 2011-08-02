@@ -62,9 +62,9 @@
     <Compile Include="Binders\ObjectBinderTest.cs" />
     <Compile Include="Mappings\CityMap.cs" />
     <Compile Include="Repositories\GenericDomainsRepositoryTests.cs" />
-    <Compile Include="ExecutionPlain\DeletePlainTest.cs" />
-    <Compile Include="ExecutionPlain\InsertPlainTest.cs" />
-    <Compile Include="ExecutionPlain\QueryPlainTest.cs" />
+    <Compile Include="ExecutionPlain\DeletePlanTest.cs" />
+    <Compile Include="ExecutionPlain\InsertPlanTest.cs" />
+    <Compile Include="ExecutionPlain\QueryPlanTest.cs" />
     <Compile Include="Mappings\FormatedPersonMap.cs" />
     <Compile Include="Mappings\PersonMap.cs" />
     <Compile Include="Parser\WkbReaderTests.cs" />

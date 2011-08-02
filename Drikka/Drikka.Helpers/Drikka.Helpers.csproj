@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</ProjectGuid>
+    <ProjectGuid>{059D3A83-06C3-45BF-AAEA-65EF2B6F4DE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Drikka.Geo.Data.Contracts</RootNamespace>
-    <AssemblyName>Drikka.Geo.Data.Contracts</AssemblyName>
+    <RootNamespace>Drikka.Helpers</RootNamespace>
+    <AssemblyName>Drikka.Helpers</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core">
+      <HintPath>..\Libs\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\Libs\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception">
+      <HintPath>..\Libs\Ninject.Extensions.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Interception.DynamicProxy">
+      <HintPath>..\Libs\Ninject.Extensions.Interception.DynamicProxy.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,29 +52,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Binders\IBinder.cs" />
-    <Compile Include="Binders\IBindManager.cs" />
-    <Compile Include="ExecutionPlan\IExecutionPlanManager.cs" />
-    <Compile Include="ExecutionPlan\IOperationPlan.cs" />
-    <Compile Include="ExecutionPlan\IQueryPlan.cs" />
-    <Compile Include="Mapping\DmlType.cs" />
-    <Compile Include="Mapping\IAttribute.cs" />
-    <Compile Include="Mapping\IMapping.cs" />
-    <Compile Include="Mapping\IMappingManager.cs" />
+    <Compile Include="Cache\IObjectCacheManager.cs" />
+    <Compile Include="Cache\MethodCache.cs" />
+    <Compile Include="Cache\ObjectCacheManager.cs" />
+    <Compile Include="Cache\ObjectCachePlanningStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Provider\IDataProvider.cs" />
-    <Compile Include="Query\IConnector.cs" />
-    <Compile Include="Query\ICriteria.cs" />
-    <Compile Include="Query\IOperator.cs" />
-    <Compile Include="Query\IPredicate.cs" />
-    <Compile Include="Query\IQuery.cs" />
-    <Compile Include="Query\IQueryTranslator.cs" />
-    <Compile Include="Repository\IDomainRepository.cs" />
-    <Compile Include="TypesMapping\ITypeConverter.cs" />
-    <Compile Include="TypesMapping\ITypeMapping.cs" />
-    <Compile Include="TypesMapping\ITypeRegister.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Manon\Manon\Manon.csproj">
+      <Project>{403937AA-2AC1-4F0C-8558-26445C2D12B6}</Project>
+      <Name>Manon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Natalie\Natalie\Natalie\Natalie.csproj">
+      <Project>{A3F3ADD9-F728-4D5D-923F-7DBA780EA132}</Project>
+      <Name>Natalie</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

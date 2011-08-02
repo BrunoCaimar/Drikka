@@ -44,10 +44,10 @@
     <Compile Include="Binders\ObjectBinder.cs" />
     <Compile Include="Converters\GenericConverter.cs" />
     <Compile Include="Converters\WellKnownBinaryConverter.cs" />
-    <Compile Include="ExecutionPlain\DeletePlain.cs" />
-    <Compile Include="ExecutionPlain\ExecutionPlainManager.cs" />
-    <Compile Include="ExecutionPlain\InsertPlain.cs" />
-    <Compile Include="ExecutionPlain\QueryPlain.cs" />
+    <Compile Include="ExecutionPlan\DeletePlan.cs" />
+    <Compile Include="ExecutionPlan\ExecutionPlanManager.cs" />
+    <Compile Include="ExecutionPlan\InsertPlan.cs" />
+    <Compile Include="ExecutionPlan\QueryPlain.cs" />
     <Compile Include="Parsers\WkbGeometryTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\DataProvider.cs" />

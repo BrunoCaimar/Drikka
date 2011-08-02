@@ -4,16 +4,16 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using Drikka.Geo.Data.Contracts.ExecutionPlain;
+using Drikka.Geo.Data.Contracts.ExecutionPlan;
 using Drikka.Geo.Data.Contracts.Mapping;
 using Drikka.Geo.Data.Contracts.TypesMapping;
 
-namespace Drikka.Geo.Data.ExecutionPlain
+namespace Drikka.Geo.Data.ExecutionPlan
 {
     /// <summary>
-    /// Delete execution plain
+    /// Delete execution plan
     /// </summary>
-    public class DeletePlain : IOperationPlain
+    public class DeletePlan : IOperationPlan
     {
         #region Fields
 
@@ -41,7 +41,7 @@ namespace Drikka.Geo.Data.ExecutionPlain
         /// </summary>
         /// <param name="mapping">Type mapping</param>
         /// <param name="typeRegister">Container</param>
-        public DeletePlain(IMapping mapping, ITypeRegister typeRegister)
+        public DeletePlan(IMapping mapping, ITypeRegister typeRegister)
         {
             this._mapping = mapping;
             this._typeRegister = typeRegister;
