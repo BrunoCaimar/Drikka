@@ -2,6 +2,7 @@
 using System.Data;
 using Drikka.Geo.Data.Contracts.TypesMapping;
 using Drikka.Geo.Data.Converters;
+using Drikka.Geo.Geometry.Contracts;
 
 namespace Drikka.Geo.Data.TypesMapping
 {
@@ -17,6 +18,11 @@ namespace Drikka.Geo.Data.TypesMapping
         /// </summary>
         private readonly ITypeRegister _typeRegister;
 
+        /// <summary>
+        /// Geometry factory
+        /// </summary>
+        private readonly IGeometryFactory _geometryFactory;
+
         #endregion
 
         #region Constructor
@@ -25,9 +31,11 @@ namespace Drikka.Geo.Data.TypesMapping
         /// Constructor
         /// </summary>
         /// <param name="typeRegister">Register</param>
-        public BasicTypesMap(ITypeRegister typeRegister)
+        /// <param name="geometryFactory">Geometry Factory</param>
+        public BasicTypesMap(ITypeRegister typeRegister, IGeometryFactory geometryFactory)
         {
             this._typeRegister = typeRegister;
+            this._geometryFactory = geometryFactory;
         }
 
         #endregion
@@ -39,13 +47,25 @@ namespace Drikka.Geo.Data.TypesMapping
         /// </summary>
         public void MapTypes()
         {
-            var map = new TypeMap(DbType.Int32, typeof(int), new GenericConverter());
+            var wkbConverter = new WellKnownBinaryConverter(this._geometryFactory);
+            var genericConverter = new GenericConverter();
+
+            var map = new TypeMap(DbType.Int32, typeof(int), genericConverter);
             this._typeRegister.Set(map);
 
-            map = new TypeMap(DbType.String, typeof(string), new GenericConverter());
+            map = new TypeMap(DbType.String, typeof(string), genericConverter);
             this._typeRegister.Set(map);
 
-            map = new TypeMap(DbType.DateTime, typeof(DateTime), new GenericConverter());
+            map = new TypeMap(DbType.DateTime, typeof(DateTime), genericConverter);
+            this._typeRegister.Set(map);
+
+            map = new TypeMap(DbType.Binary, typeof(IMapPoint), wkbConverter);
+            this._typeRegister.Set(map);
+
+            map = new TypeMap(DbType.Binary, typeof(ILineString), wkbConverter);
+            this._typeRegister.Set(map);
+
+            map = new TypeMap(DbType.Binary, typeof(IPolygon), wkbConverter);
             this._typeRegister.Set(map);
         }
 

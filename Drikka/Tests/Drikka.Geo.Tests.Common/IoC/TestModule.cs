@@ -12,6 +12,8 @@ using Drikka.Geo.Data.Mapping;
 using Drikka.Geo.Data.Postgre.Query;
 using Drikka.Geo.Data.Providers;
 using Drikka.Geo.Data.TypesMapping;
+using Drikka.Geo.Geometry;
+using Drikka.Geo.Geometry.Contracts;
 using Ninject.Modules;
 
 namespace Drikka.Geo.Tests.Common.IoC
@@ -27,6 +29,7 @@ namespace Drikka.Geo.Tests.Common.IoC
             Bind<IDbConnection>().To<SqlCeConnection>().WithConstructorArgument("connectionString", "DataSource=TestsDatabase.sdf");
             Bind<IBindManager>().To<BindManager>().InSingletonScope();
             Bind<IQueryTranslator>().To<QueryTranslator>();
+            Bind<IGeometryFactory>().To<GeometryFactory>();
         }
     }
 }

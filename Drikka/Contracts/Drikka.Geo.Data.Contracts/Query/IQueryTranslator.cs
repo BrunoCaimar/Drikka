@@ -11,6 +11,6 @@ namespace Drikka.Geo.Data.Contracts.Query
         /// </summary>
         /// <param name="query">Query object</param>
         /// <returns>SQL</returns>
-        string Translate<T>(IQuery<T> query);
+        IQueryTranslation Translate<T>(IQuery<T> query);
     }
 }

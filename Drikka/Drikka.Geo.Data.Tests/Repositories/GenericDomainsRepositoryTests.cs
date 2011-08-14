@@ -36,13 +36,13 @@ namespace Drikka.Geo.Data.Tests.Repositories
         {
             var kernel = new NinjectContainer();
             var maps = kernel.Resolve<IMappingManager>();
-            var executer = kernel.Resolve<GenericDomainsRepository>();
+            var executer = kernel.Resolve <GenericDomainsRepository<Person>>();
             var types = kernel.Resolve<BasicTypesMap>();
 
             maps.LoadFromAssembly(typeof(PersonMap).Assembly);
             types.MapTypes();
 
-            var result = executer.GetAll(typeof (Person));
+            var result = executer.GetAll();
 
             Assert.IsNotNull(result);
             Assert.AreNotEqual(result.Count, 0);
@@ -54,7 +54,7 @@ namespace Drikka.Geo.Data.Tests.Repositories
         {
             var kernel = new NinjectContainer();
             var maps = kernel.Resolve<IMappingManager>();
-            var executer = kernel.Resolve<GenericDomainsRepository>();
+            var executer = kernel.Resolve<GenericDomainsRepository<Person>>();
             var types = kernel.Resolve<BasicTypesMap>();
 
             maps.LoadFromAssembly(typeof(PersonMap).Assembly);
@@ -75,13 +75,13 @@ namespace Drikka.Geo.Data.Tests.Repositories
         {
             var kernel = new NinjectContainer();
             var maps = kernel.Resolve<IMappingManager>();
-            var executer = kernel.Resolve<GenericDomainsRepository>();
+            var executer = kernel.Resolve<GenericDomainsRepository<City>>();
             var types = kernel.Resolve<BasicTypesMap>();
 
             maps.LoadFromAssembly(typeof(CityMap).Assembly);
             types.MapTypes();
 
-            var result = executer.Get(typeof(City), 1);
+            var result = executer.Get(1);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(City));
@@ -93,18 +93,18 @@ namespace Drikka.Geo.Data.Tests.Repositories
         {
             var kernel = new NinjectContainer();
             var maps = kernel.Resolve<IMappingManager>();
-            var executer = kernel.Resolve<GenericDomainsRepository>();
+            var executer = kernel.Resolve<GenericDomainsRepository<City>>();
             var types = kernel.Resolve<BasicTypesMap>();
 
             maps.LoadFromAssembly(typeof(CityMap).Assembly);
             types.MapTypes();
 
-            var result = executer.Get(typeof(City), 1);
+            var result = executer.Get(2);
             Assert.IsNotNull(result);
 
             executer.Delete(result);
 
-            result = executer.Get(typeof(City), 1);
+            result = executer.Get(2);
 
             Assert.IsNull(result);
         }

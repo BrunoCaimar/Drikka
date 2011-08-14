@@ -25,7 +25,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractFeature.cs" />
     <Compile Include="Envelope.cs" />
+    <Compile Include="FeatureSet.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="GeometryFactory.cs" />
     <Compile Include="LinearRing.cs" />
@@ -51,6 +53,10 @@
     <Compile Include="SpatialReference.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
+      <Project>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</Project>
+      <Name>Drikka.Geo.Data.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Contracts\Drikka.Geo.Geometry.Contracts\Drikka.Geo.Geometry.Contracts.csproj">
       <Project>{335EF9BD-9A33-4037-B604-87D2696EC9C6}</Project>
       <Name>Drikka.Geo.Geometry.Contracts</Name>

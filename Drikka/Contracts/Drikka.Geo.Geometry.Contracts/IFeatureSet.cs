@@ -6,7 +6,7 @@ namespace Drikka.Geo.Geometry.Contracts
     /// Feature Set
     /// </summary>
     /// <typeparam name="T">Domain Type</typeparam>
-    public interface IFeatureSet<T> : IEnumerable<T>
+    public interface IFeatureSet<T> : IEnumerable<T> where T : IFeature
     {
         /// <summary>
         /// Get domain by id

@@ -1,12 +1,12 @@
 ﻿using Drikka.Geo.Data.Contracts.Query;
 
-namespace Drikka.Geo.Data.Query
+namespace Drikka.Geo.Data.Query.Criteria
 {
     /// <summary>
-    /// Single criteria
+    /// Abstract Single criteria
     /// </summary>
     /// <typeparam name="T">Type</typeparam>
-    public class SingleCriteria<T> : ICriteria<T>, IRestorableQuery<T>
+    public abstract class AbstractSingleCriteria<T> : IRestorableQuery<T>, ICriteria<T>
     {
         #region Fields
         
@@ -22,19 +22,20 @@ namespace Drikka.Geo.Data.Query
         /// <summary>
         /// Predicate
         /// </summary>
-        public IPredicate<T> Predicate { get; private set; }
+        public virtual IPredicate<T> Predicate { get; private set; }
 
         /// <summary>
         /// Operator
         /// </summary>
-        public IOperator Operator { get; private set; }
+        public virtual IOperator Operator { get; private set; }
 
         /// <summary>
         /// Value
         /// </summary>
-        public object Value { get; private set; }
+        public virtual object Value { get; private set; }
 
-        #endregion
+
+       #endregion
 
         #region Constructor
 
@@ -45,7 +46,7 @@ namespace Drikka.Geo.Data.Query
         /// <param name="predicate">Predicate</param>
         /// <param name="operator">Operator</param>
         /// <param name="value">Value</param>
-        public SingleCriteria(IQuery<T> rootQuery, IPredicate<T> predicate, IOperator @operator, object value)
+        protected AbstractSingleCriteria(IQuery<T> rootQuery, IPredicate<T> predicate, IOperator @operator, object value)
         {
             this._rootQuery = rootQuery;
             this.Predicate = predicate;

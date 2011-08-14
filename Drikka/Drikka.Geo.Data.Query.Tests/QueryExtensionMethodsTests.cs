@@ -1,8 +1,5 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
-using System.Linq;
-using Drikka.Geo.Tests.Common.Entities;
+﻿using Drikka.Geo.Tests.Common.Entities;
+using Drikka.Geo.Data.Query;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Drikka.Geo.Data.Query.Tests

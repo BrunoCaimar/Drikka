@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using Drikka.Geo.Data.Contracts.Query;
 using Drikka.Geo.Data.Query.Connectors;
+using Drikka.Geo.Data.Query.Criteria;
 using Drikka.Geo.Data.Query.Operators;
 using Manon.Extensions.Expressions;
 

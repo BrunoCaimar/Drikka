@@ -9,10 +9,10 @@ using Ninject.Planning.Strategies;
 namespace Drikka.Helpers.Tests.Cache
 {
     [TestClass]
-    public class UnitTest1
+    public class ObjectCachePlanningStrategyTests
     {
         [TestMethod]
-        public void TestMethod1()
+        public void Interception_Test()
         {
             var kernel = new StandardKernel(new Module());
             kernel.Components.Add<IPlanningStrategy, ObjectCachePlanningStrategy>();
@@ -20,10 +20,9 @@ namespace Drikka.Helpers.Tests.Cache
             var manager = kernel.Get<IObjectCacheManager>();
             var method = typeof(Descriptor).GetMethod("GetMetadata");
             var cache = new DictionaryCache<object>();
-
             var keyval = new Dictionary<MethodInfo, ICache<object>>();
-            keyval.Add(method, cache);
 
+            keyval.Add(method, cache);
             manager.SetupCache(typeof (Descriptor), keyval);
 
             var descriptor = kernel.Get<IDescriptor>();

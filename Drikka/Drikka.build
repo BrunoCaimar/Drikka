@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectName>Drikka</ProjectName>
+	<DebugOutputDir>.\DebugBinaries</DebugOutputDir>
+	<ReleaseOutputDir>.\Release</ReleaseOutputDir>
+  </PropertyGroup> 
+  
+  <ItemGroup>
+	<DebugBinaries Include="**\bin\Debug\*.dll" Exclude="**\TestResults\**"/>
+	<DebugBinaries Include="**\bin\Debug\*.sdf"/>
+	<ReleaseBinaries Include="**\bin\Release\*.dll"/>
+  </ItemGroup>
+
+  <Target Name="DebugBuild">
+    <Message Text="Building $(ProjectName)" />
+    <MSBuild Projects="$(ProjectName).sln" Targets="Clean" Properties="Configuration=Debug"/>
+    <MSBuild Projects="$(ProjectName).sln" Targets="Build" Properties="Configuration=Debug"/>
+	<Message Text="Copying Binaries Files"/>	
+	<Copy SourceFiles="@(DebugBinaries)" DestinationFolder="$(DebugOutputDir)"/>
+  </Target>
+
+  <Target Name="UnitTests" DependsOnTargets="DebugBuild">
+	  <ItemGroup>
+		<TestBinaries Include="$(DebugOutputDir)\*.Tests.dll" />
+	  </ItemGroup>
+      <Message Text="Running $(ProjectName) Unit Tests @(TestBinaries)" />
+      <Exec Command='"$(VS100COMNTOOLS)..\IDE\mstest.exe" /testcontainer:$(DebugOutputDir)\%(TestBinaries.Filename)%(Extension)'/>
+  </Target>
+
+  <Target Name="ReleaseBuild" DependsOnTargets="DebugBuild;UnitTests">
+    <Message Text="Building $(ProjectName) Release Build" />
+    <MSBuild Projects="$(ProjectName).sln" Targets="Clean" Properties="Configuration=Release" />
+    <MSBuild Projects="$(ProjectName).sln" Targets="Build" Properties="Configuration=Release" />
+	<Copy SourceFiles="@(ReleaseBinaries)" DestinationFolder="$(ReleaseOutputDir)"/>
+    <Message Text="$(ProjectName) Release Build Complete!" />
+  </Target>
+
+</Project>

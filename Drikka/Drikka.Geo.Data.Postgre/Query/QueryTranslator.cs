@@ -55,7 +55,7 @@ namespace Drikka.Geo.Data.Postgre.Query
         /// <typeparam name="T">Domain type</typeparam>
         /// <param name="query">Query</param>
         /// <returns>Query translated</returns>
-        public string Translate<T>(IQuery<T> query)
+        public IQueryTranslation Translate<T>(IQuery<T> query)
         {
             var map = this._mappingManager.GetMapping(query.QueriedType);
             var sql = new StringBuilder();
@@ -77,7 +77,8 @@ namespace Drikka.Geo.Data.Postgre.Query
                 }
             }
 
-            return sql.ToString();
+            return null;
+            //return sql.ToString();
         }
 
         #endregion

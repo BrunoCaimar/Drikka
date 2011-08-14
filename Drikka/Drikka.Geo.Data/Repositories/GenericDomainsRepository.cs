@@ -10,7 +10,7 @@ using Drikka.Geo.Data.Contracts.Repository;
 
 namespace Drikka.Geo.Data.Repositories
 {
-    public class GenericDomainsRepository : IDomainRepository
+    public class GenericDomainsRepository<T> : IDomainRepository<T>
     {
         #region Fields
 
@@ -54,7 +54,7 @@ namespace Drikka.Geo.Data.Repositories
         /// Execute insert statement for domain
         /// </summary>
         /// <param name="domain">Domain</param>
-        public object Save(object domain)
+        public T Save(T domain)
         {
             throw new NotImplementedException();
 
@@ -94,11 +94,11 @@ namespace Drikka.Geo.Data.Repositories
         /// </summary>
         /// <param name="type">Domain type</param>
         /// <returns>List of domains</returns>
-        public IList GetAll(Type type)
+        public IList<T> GetAll()
         {
-            var plan = this._planManager.GetQueryplan(type);
+            var plan = this._planManager.GetQueryplan(typeof(T));
 
-            return ExecuteQuery(plan.GetText(), type);
+            return ExecuteQuery(plan.GetText());
         }
 
         /// <summary>
@@ -107,19 +107,19 @@ namespace Drikka.Geo.Data.Repositories
         /// <param name="type">Domain type</param>
         /// <param name="id">Object Id</param>
         /// <returns>List of domains</returns>
-        public object Get(Type type, object id)
+        public T Get(object id)
         {
-            var plan = this._planManager.GetQueryplan(type);
+            var plan = this._planManager.GetQueryplan(typeof(T));
             var cmd = this._dataProvider.CreateCommand();
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = plan.GetTextById();
 
             cmd.Parameters.Add(plan.GetParameter(cmd, id));
 
-            return FirstOrDefault(ExecuteQuery(cmd, type));
+            return FirstOrDefault(ExecuteQuery(cmd));
         }
 
-        public object Update(object domain)
+        public T Update(T domain)
         {
             throw new NotImplementedException();
         }
@@ -128,7 +128,7 @@ namespace Drikka.Geo.Data.Repositories
         /// Delete the domain
         /// </summary>
         /// <param name="domain">Domain</param>
-        public void Delete(object domain)
+        public void Delete(T domain)
         {
             var plan = this._planManager.GetDeleteplan(domain.GetType());
             var cmd = this._dataProvider.CreateCommand();
@@ -146,11 +146,11 @@ namespace Drikka.Geo.Data.Repositories
         /// <typeparam name="T">Domain type</typeparam>
         /// <param name="query">Query</param>
         /// <returns>List of domains</returns>
-        public IList Query<T>(IQuery<T> query)
+        public IList<T> Query(IQuery<T> query)
         {
             var plan = this._planManager.GetQueryplan(query.QueriedType);
 
-            return ExecuteQuery(plan.GetText(query), query.QueriedType);
+            return ExecuteQuery(plan.GetText(query));
         }
 
         #endregion
@@ -161,16 +161,15 @@ namespace Drikka.Geo.Data.Repositories
         /// Execute query
         /// </summary>
         /// <param name="sqlText">Query statement</param>
-        /// <param name="type">Domain type</param>
         /// <returns>List of domains</returns>
-        private IList ExecuteQuery(string sqlText, Type type)
+        private IList<T> ExecuteQuery(string sqlText)
         {
             var cmd = this._dataProvider.CreateCommand();
 
             cmd.CommandType = CommandType.Text;
             cmd.CommandText = sqlText;
 
-            var list = ExecuteQuery(cmd, type);
+            var list = ExecuteQuery(cmd);
 
             return list;
         }
@@ -181,20 +180,21 @@ namespace Drikka.Geo.Data.Repositories
         /// <param name="command">Command</param>
         /// <param name="type">Domain type</param>
         /// <returns>List of domains</returns>
-        private IList ExecuteQuery(IDbCommand command, Type type)
+        private IList<T> ExecuteQuery(IDbCommand command)
         {
+            var type = typeof (T);
             var binder = this._bindManager.GetBinder(type);
 
             this._dataProvider.OpenConnection();
             command.Prepare();
 
-            var list = new List<object>();
+            var list = new List<T>();
 
             using (var reader = command.ExecuteReader(CommandBehavior.Default))
             {
                 while (reader.Read())
                 {
-                    var domain = Activator.CreateInstance(type);
+                    var domain = (T)Activator.CreateInstance(type);
                     binder.Bind(reader, domain);
                     list.Add(domain);
                 }
@@ -242,11 +242,11 @@ namespace Drikka.Geo.Data.Repositories
         /// </summary>
         /// <param name="list">List</param>
         /// <returns>value</returns>
-        private static object FirstOrDefault(IList list)
+        private static T FirstOrDefault(IList<T> list)
         {
             if (list == null || list.Count == 0)
             {
-                return null;
+                return default(T);
             }
 
             return list[0];
