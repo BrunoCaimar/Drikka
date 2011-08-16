@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="AbstractFeature.cs" />
     <Compile Include="Envelope.cs" />
+    <Compile Include="FeatureDatabase.cs" />
     <Compile Include="FeatureSet.cs" />
     <Compile Include="Geometry.cs" />
     <Compile Include="GeometryFactory.cs" />
@@ -60,6 +61,10 @@
     <ProjectReference Include="..\Contracts\Drikka.Geo.Geometry.Contracts\Drikka.Geo.Geometry.Contracts.csproj">
       <Project>{335EF9BD-9A33-4037-B604-87D2696EC9C6}</Project>
       <Name>Drikka.Geo.Geometry.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drikka.Common\Drikka.Common.csproj">
+      <Project>{3FA6F7F9-C19D-4118-96BF-2B9B9BB192FD}</Project>
+      <Name>Drikka.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

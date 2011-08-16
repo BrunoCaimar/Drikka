@@ -13,7 +13,7 @@ namespace Drikka.Geo.Geometry.Contracts
         /// </summary>
         /// <param name="id">Domain id</param>
         /// <returns></returns>
-        T Get(uint id);
+        T Get(int id);
 
         /// <summary>
         /// Save domain

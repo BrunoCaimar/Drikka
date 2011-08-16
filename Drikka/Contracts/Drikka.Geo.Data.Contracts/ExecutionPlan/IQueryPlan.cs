@@ -6,29 +6,21 @@ namespace Drikka.Geo.Data.Contracts.ExecutionPlan
     public interface IQueryPlan
     {
         /// <summary>
-        /// Get command text
+        /// Create Plan Parameters
         /// </summary>
-        /// <returns>Insert command text</returns>
-        string GetText();
+        /// <returns>Plan Parameters</returns>
+        IPlanParameters CreatePlanParameter();
 
         /// <summary>
-        /// Get command text
+        /// Create Plan Parameters
         /// </summary>
-        /// <returns>Insert command text</returns>
-        string GetTextById();
+        /// <returns>Plan Parameters</returns>
+        IPlanParameters CreatePlanParameter<T>(IQuery<T> query, System.Func<IDbDataParameter> parameterFactory);
 
         /// <summary>
-        /// Get command text
+        /// Create Plan Parameters for select by ID
         /// </summary>
-        /// <returns>Insert command text</returns>
-        string GetText<T>(IQuery<T> query);
-
-        /// <summary>
-        /// Get parameters for a command
-        /// </summary>
-        /// <param name="command">Command</param>
-        /// <param name="id">Domain Object</param>
-        /// <returns>List of parameters</returns>
-        IDataParameter GetParameter(IDbCommand command, object id);
+        /// <returns>Plan Parameters</returns>
+        IPlanParameters CreatePlanParameterById(System.Func<IDbDataParameter> parameterFactory, object id);     
     }
 }

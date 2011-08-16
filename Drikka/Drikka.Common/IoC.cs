@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Drikka.Geo.Common.Contracts;
 
 namespace Drikka.Common
@@ -52,6 +54,16 @@ namespace Drikka.Common
         #endregion
 
         #region Resolvers
+
+        /// <summary>
+        /// Resolve type implementation
+        /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <returns>Object of T type</returns>
+        public static T Resolve<T>(params KeyValuePair<string, object>[] args)
+        {
+            return Container.Resolve<T>(args);
+        }
 
         /// <summary>
         /// Resolve type implementation

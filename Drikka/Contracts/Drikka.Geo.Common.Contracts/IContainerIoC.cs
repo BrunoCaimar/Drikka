@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Drikka.Geo.Common.Contracts
 {
@@ -7,6 +8,13 @@ namespace Drikka.Geo.Common.Contracts
     /// </summary>
     public interface IContainerIoC
     {
+        /// <summary>
+        /// Resolve type implementation
+        /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <returns>Object of T type</returns>
+        T Resolve<T>(params KeyValuePair<string, object>[] args);
+
         /// <summary>
         /// Resolve type implementation
         /// </summary>

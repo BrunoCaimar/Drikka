@@ -44,6 +44,7 @@
     <Compile Include="Binders\IBindManager.cs" />
     <Compile Include="ExecutionPlan\IExecutionPlanManager.cs" />
     <Compile Include="ExecutionPlan\IOperationPlan.cs" />
+    <Compile Include="ExecutionPlan\IPlanParameters.cs" />
     <Compile Include="ExecutionPlan\IQueryPlan.cs" />
     <Compile Include="Mapping\DmlType.cs" />
     <Compile Include="Mapping\IAttribute.cs" />
@@ -54,9 +55,10 @@
     <Compile Include="Query\IConnector.cs" />
     <Compile Include="Query\ICriteria.cs" />
     <Compile Include="Query\IOperator.cs" />
+    <Compile Include="Sql\ISqlParam.cs" />
     <Compile Include="Query\IPredicate.cs" />
     <Compile Include="Query\IQuery.cs" />
-    <Compile Include="Query\IQueryTranslation.cs" />
+    <Compile Include="Sql\ISqlTranslation.cs" />
     <Compile Include="Query\IQueryTranslator.cs" />
     <Compile Include="Query\ISpatialOperator.cs" />
     <Compile Include="Repository\IDomainRepository.cs" />

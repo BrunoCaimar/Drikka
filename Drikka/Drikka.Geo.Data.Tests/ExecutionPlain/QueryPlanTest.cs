@@ -16,7 +16,7 @@ namespace Drikka.Geo.Data.Tests.ExecutionPlain
 
             var select = new QueryPlan(mapping, null, null);
 
-            select.GetText().ToUpper().Should().Be("SELECT ID, NAME, AGE FROM PERSON");
+            select.CreatePlanParameter().SqlText.ToUpper().Should().Be("SELECT ID, NAME, AGE FROM PERSON");
         }
 
         [TestMethod]
@@ -27,7 +27,7 @@ namespace Drikka.Geo.Data.Tests.ExecutionPlain
 
             var select = new QueryPlan(mapping, null, null);
 
-            select.GetText().ToUpper().Should().Be("SELECT ID, ASBINARY(NAME) AS NAME, AGE FROM PERSON");
+            select.CreatePlanParameter().SqlText.ToUpper().Should().Be("SELECT ID, ASBINARY(NAME) AS NAME, AGE FROM PERSON");
         }
     }
 }

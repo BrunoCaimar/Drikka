@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using Drikka.Geo.Data.Contracts.Binders;
@@ -92,29 +91,37 @@ namespace Drikka.Geo.Data.Repositories
         /// <summary>
         /// Execute query statement
         /// </summary>
-        /// <param name="type">Domain type</param>
         /// <returns>List of domains</returns>
         public IList<T> GetAll()
         {
             var plan = this._planManager.GetQueryplan(typeof(T));
+            var cmd = this._dataProvider.CreateCommand();
+            var param = plan.CreatePlanParameter();
 
-            return ExecuteQuery(plan.GetText());
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = param.SqlText;
+
+            return ExecuteQuery(cmd);
         }
 
         /// <summary>
         /// Execute query statement
         /// </summary>
-        /// <param name="type">Domain type</param>
         /// <param name="id">Object Id</param>
         /// <returns>List of domains</returns>
         public T Get(object id)
         {
             var plan = this._planManager.GetQueryplan(typeof(T));
             var cmd = this._dataProvider.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = plan.GetTextById();
+            var param = plan.CreatePlanParameterById(cmd.CreateParameter, id);
 
-            cmd.Parameters.Add(plan.GetParameter(cmd, id));
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = param.SqlText;
+
+            foreach (var parameter in param.Parameters)
+            {
+                cmd.Parameters.Add(parameter);
+            }
 
             return FirstOrDefault(ExecuteQuery(cmd));
         }
@@ -132,10 +139,15 @@ namespace Drikka.Geo.Data.Repositories
         {
             var plan = this._planManager.GetDeleteplan(domain.GetType());
             var cmd = this._dataProvider.CreateCommand();
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = plan.GetText();
+            var param = plan.CreatePlanParameter(cmd.CreateParameter, domain);
 
-            plan.GetParameters(cmd, domain).ForEach(x => cmd.Parameters.Add(x));
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = param.SqlText;
+
+            foreach (var parameter in param.Parameters)
+            {
+                cmd.Parameters.Add(parameter);
+            }
 
             this.ExecuteCommand(cmd);
         }
@@ -149,8 +161,18 @@ namespace Drikka.Geo.Data.Repositories
         public IList<T> Query(IQuery<T> query)
         {
             var plan = this._planManager.GetQueryplan(query.QueriedType);
+            var cmd = this._dataProvider.CreateCommand();
+            var param = plan.CreatePlanParameter(query, cmd.CreateParameter);
 
-            return ExecuteQuery(plan.GetText(query));
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = param.SqlText;
+
+            foreach (var parameter in param.Parameters)
+            {
+                cmd.Parameters.Add(parameter);
+            }
+
+            return ExecuteQuery(cmd);
         }
 
         #endregion
@@ -160,25 +182,7 @@ namespace Drikka.Geo.Data.Repositories
         /// <summary>
         /// Execute query
         /// </summary>
-        /// <param name="sqlText">Query statement</param>
-        /// <returns>List of domains</returns>
-        private IList<T> ExecuteQuery(string sqlText)
-        {
-            var cmd = this._dataProvider.CreateCommand();
-
-            cmd.CommandType = CommandType.Text;
-            cmd.CommandText = sqlText;
-
-            var list = ExecuteQuery(cmd);
-
-            return list;
-        }
-
-        /// <summary>
-        /// Execute query
-        /// </summary>
         /// <param name="command">Command</param>
-        /// <param name="type">Domain type</param>
         /// <returns>List of domains</returns>
         private IList<T> ExecuteQuery(IDbCommand command)
         {

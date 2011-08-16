@@ -47,6 +47,7 @@
     <Compile Include="ExecutionPlan\DeletePlan.cs" />
     <Compile Include="ExecutionPlan\ExecutionPlanManager.cs" />
     <Compile Include="ExecutionPlan\InsertPlan.cs" />
+    <Compile Include="ExecutionPlan\PlanParameters.cs" />
     <Compile Include="ExecutionPlan\QueryPlain.cs" />
     <Compile Include="Parsers\WkbGeometryTypes.cs" />
     <Compile Include="Parsers\WkbWriter.cs" />

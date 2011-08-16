@@ -12,7 +12,7 @@ namespace Drikka.Geo.Geometry
         /// <summary>
         /// Unique identifier
         /// </summary>
-        public uint Id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Geometry

@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Drikka.Geo.Common.Contracts;
 using Ninject;
+using Ninject.Parameters;
 
 namespace Drikka.Geo.Tests.Common.IoC
 {
@@ -31,7 +34,20 @@ namespace Drikka.Geo.Tests.Common.IoC
         #endregion
 
         #region IContainerIoC Implementation
-        
+
+        /// <summary>
+        /// Resolve dependencies for a Type
+        /// </summary>
+        /// <typeparam name="T">Type</typeparam>
+        /// <returns>Concrete Object</returns>
+        public T Resolve<T>(params KeyValuePair<string, object>[] args)
+        {
+            var constructorArgs =
+                args.Select(valuePair => new ConstructorArgument(valuePair.Key, valuePair.Value)).ToList();
+
+            return this._kernel.Get<T>(constructorArgs.ToArray());
+        }
+
         /// <summary>
         /// Resolve dependencies for a Type
         /// </summary>

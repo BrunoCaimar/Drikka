@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Drikka.Geo.Data.Contracts.Query;
 
 namespace Drikka.Geo.Data.Contracts.Repository
 {
@@ -40,5 +41,13 @@ namespace Drikka.Geo.Data.Contracts.Repository
         /// </summary>
         /// <returns>List of all domains of a passed type</returns>
         IList<T> GetAll();
+
+        /// <summary>
+        /// Execute query statement for domain
+        /// </summary>
+        /// <typeparam name="T">Domain type</typeparam>
+        /// <param name="query">Query</param>
+        /// <returns>List of domains</returns>
+        IList<T> Query(IQuery<T> query);
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using Drikka.Geo.Data.Contracts.Sql;
+
 namespace Drikka.Geo.Data.Contracts.Query
 {
     /// <summary>
@@ -11,6 +13,6 @@ namespace Drikka.Geo.Data.Contracts.Query
         /// </summary>
         /// <param name="query">Query object</param>
         /// <returns>SQL</returns>
-        IQueryTranslation Translate<T>(IQuery<T> query);
+        ISqlTranslation Translate<T>(IQuery<T> query);
     }
 }

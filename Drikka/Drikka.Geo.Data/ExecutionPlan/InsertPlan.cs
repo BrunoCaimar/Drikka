@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
@@ -51,56 +52,61 @@ namespace Drikka.Geo.Data.ExecutionPlan
 
         #endregion
 
-        /// <summary>
-        /// Get command text
-        /// </summary>
-        /// <returns>Insert command text</returns>
-        public string GetText()
+        public IPlanParameters CreatePlanParameter(Func<IDbDataParameter> parameterFactory, object domain)
         {
-            return this._text;
+            throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Get parameters for a command
-        /// </summary>
-        /// <param name="command">Command</param>
-        /// <param name="domain">Domain Object</param>
-        /// <returns>List of parameters</returns>
-        public List<IDataParameter> GetParameters(IDbCommand command, object domain)
-        {
-            var @params = this._mapping.AttributesMappings.Select(
-                    attribute => CreateParameter(command, domain, attribute)).Cast<IDataParameter>().ToList();
+        ///// <summary>
+        ///// Get command text
+        ///// </summary>
+        ///// <returns>Insert command text</returns>
+        //public string GetText()
+        //{
+        //    return this._text;
+        //}
 
-            //@params.AddRange(
-            //    this._mapping.IdentifiersMapping.Values.Select(
-            //        attribute => CreateParameter2(command, domain, attribute)).Cast<IDataParameter>().ToList());
+        ///// <summary>
+        ///// Get parameters for a command
+        ///// </summary>
+        ///// <param name="command">Command</param>
+        ///// <param name="domain">Domain Object</param>
+        ///// <returns>List of parameters</returns>
+        //public List<IDataParameter> GetParameters(IDbCommand command, object domain)
+        //{
+        //    var @params = this._mapping.AttributesMappings.Select(
+        //            attribute => CreateParameter(command, domain, attribute)).Cast<IDataParameter>().ToList();
 
-            return @params;
-        }
+        //    //@params.AddRange(
+        //    //    this._mapping.IdentifiersMapping.Values.Select(
+        //    //        attribute => CreateParameter2(command, domain, attribute)).Cast<IDataParameter>().ToList());
 
-        #region Private Methods
+        //    return @params;
+        //}
 
-        /// <summary>
-        /// Create parameter
-        /// </summary>
-        /// <param name="command">DbCommand</param>
-        /// <param name="domain">Domain</param>
-        /// <param name="attribute">Attribute</param>
-        /// <returns>DataParameter</returns>
-        private IDbDataParameter CreateParameter(IDbCommand command, object domain, IAttribute attribute)
-        {
-            var map = this._typeRegister.Get(attribute.PropertyInfo.PropertyType);
+        //#region Private Methods
 
-            var param = command.CreateParameter();
+        ///// <summary>
+        ///// Create parameter
+        ///// </summary>
+        ///// <param name="command">DbCommand</param>
+        ///// <param name="domain">Domain</param>
+        ///// <param name="attribute">Attribute</param>
+        ///// <returns>DataParameter</returns>
+        //private IDbDataParameter CreateParameter(IDbCommand command, object domain, IAttribute attribute)
+        //{
+        //    var map = this._typeRegister.Get(attribute.PropertyInfo.PropertyType);
 
-            param.Direction = ParameterDirection.Input;
-            param.ParameterName = string.Format("@{0}", attribute.FieldName);
-            param.DbType = map.DbType;
-            param.Value = map.Converter.Write(attribute.PropertyInfo.GetValue(
-                domain, BindingFlags.GetProperty, null, null, CultureInfo.InvariantCulture));
+        //    var param = command.CreateParameter();
 
-            return param;
-        }
+        //    param.Direction = ParameterDirection.Input;
+        //    param.ParameterName = string.Format("@{0}", attribute.FieldName);
+        //    param.DbType = map.DbType;
+        //    param.Value = map.Converter.Write(attribute.PropertyInfo.GetValue(
+        //        domain, BindingFlags.GetProperty, null, null, CultureInfo.InvariantCulture));
+
+        //    return param;
+        //}
 
         /// <summary>
         /// Get command text
@@ -114,7 +120,6 @@ namespace Drikka.Geo.Data.ExecutionPlan
             text.Append(" (");
 
             var names = this._mapping.AttributesMappings.Select(attribute => attribute.FieldName).ToList();
-            //names.AddRange(this._mapping.IdentifiersMapping.Values.Select(attribute => attribute.FieldName).ToList());
             text.Append(string.Join(", ", names));
 
             text.Append(") VALUES (");
@@ -127,7 +132,8 @@ namespace Drikka.Geo.Data.ExecutionPlan
             return text.ToString();
         }
 
-        #endregion
+        //#endregion
 
+        
     }
 }

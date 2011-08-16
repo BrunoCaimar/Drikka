@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace Drikka.Geo.Data.Contracts.Query
+namespace Drikka.Geo.Data.Contracts.Sql
 {
     /// <summary>
     /// Sql translation
     /// </summary>
-    public interface IQueryTranslation
+    public interface ISqlTranslation
     {
         /// <summary>
         /// Sql Text
@@ -13,8 +13,8 @@ namespace Drikka.Geo.Data.Contracts.Query
         string SqlText { get; }
 
         /// <summary>
-        /// Command parameters
+        /// Parameters
         /// </summary>
-        IDictionary<string, object> Parameters { get; }
+        IList<ISqlParam> Parameters { get; }
     }
 }

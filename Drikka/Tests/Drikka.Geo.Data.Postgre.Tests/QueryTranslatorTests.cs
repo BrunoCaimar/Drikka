@@ -26,7 +26,9 @@ namespace Drikka.Geo.Data.Postgre.Tests
 
             var translator = new QueryTranslator(map);
             var result = translator.Translate(query);
-            result.ToUpper().Trim().Should().Be("NAME = 'ALAOR' AND AGE > 18 AND ID <> 0");
+            
+            result.SqlText.Trim().ToUpper().Should().Be("NAME = @PARAMETER_0 AND AGE > @PARAMETER_1 AND ID <> @PARAMETER_2");
+            result.Parameters.Count.Should().Be(3);
         }
     }
 }

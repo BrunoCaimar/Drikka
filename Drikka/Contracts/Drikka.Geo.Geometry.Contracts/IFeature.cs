@@ -8,7 +8,7 @@
         /// <summary>
         /// Unique identifier
         /// </summary>
-        uint Id { get; }
+        int Id { get; }
 
         /// <summary>
         /// Geometry

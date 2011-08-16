@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
@@ -50,56 +51,37 @@ namespace Drikka.Geo.Data.ExecutionPlan
 
         #endregion
 
-        #region Public Methods
-        
-        /// <summary>
-        /// Get command text
-        /// </summary>
-        /// <returns>Delete command text</returns>
-        public string GetText()
-        {
-            return this._text;
-        }
+        #region IOperationPlan Implementation
 
         /// <summary>
-        /// Get parameters for a command
+        /// Create Plan Parameters
         /// </summary>
-        /// <param name="command">Command</param>
-        /// <param name="domain">Domain Object</param>
-        /// <returns>List of parameters</returns>
-        public List<IDataParameter> GetParameters(IDbCommand command, object domain)
+        /// <returns>Plan Parameters</returns>
+        public IPlanParameters CreatePlanParameter(Func<IDbDataParameter> parameterFactory, object domain)
         {
-            var @params = this._mapping.IdentifiersMapping.Select(
-                    attribute => CreateParameter(command, domain, attribute)).Cast<IDataParameter>().ToList();
+            var list = new List<IDbDataParameter>();
 
-            return @params;
-        }
+            foreach (var attribute in this._mapping.IdentifiersMapping)
+            {
+                var map = this._typeRegister.Get(attribute.PropertyInfo.PropertyType);
 
+                var param = parameterFactory();
+
+                param.Direction = ParameterDirection.Input;
+                param.ParameterName = string.Format("@{0}", attribute.FieldName);
+                param.DbType = map.DbType;
+                param.Value = map.Converter.Write(attribute.PropertyInfo.GetValue(
+                    domain, BindingFlags.GetProperty, null, null, CultureInfo.InvariantCulture));
+
+                list.Add(param);
+            }
+
+            return new PlanParameters(this._text, list);
+        }       
+       
         #endregion
 
         #region Private Methods
-
-        /// <summary>
-        /// Create parameter
-        /// </summary>
-        /// <param name="command">DbCommand</param>
-        /// <param name="domain">Domain</param>
-        /// <param name="attribute">Attribute</param>
-        /// <returns>DataParameter</returns>
-        private IDbDataParameter CreateParameter(IDbCommand command, object domain, IAttribute attribute)
-        {
-            var map = this._typeRegister.Get(attribute.PropertyInfo.PropertyType);
-
-            var param = command.CreateParameter();
-
-            param.Direction = ParameterDirection.Input;
-            param.ParameterName = string.Format("@{0}", attribute.FieldName);
-            param.DbType = map.DbType;
-            param.Value = map.Converter.Write(attribute.PropertyInfo.GetValue(
-                domain, BindingFlags.GetProperty, null, null, CultureInfo.InvariantCulture));
-
-            return param;
-        }
 
         /// <summary>
         /// Get the delete text
@@ -121,5 +103,6 @@ namespace Drikka.Geo.Data.ExecutionPlan
 
         #endregion
 
+        
     }
 }

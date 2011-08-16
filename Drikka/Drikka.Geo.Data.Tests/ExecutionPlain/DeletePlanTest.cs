@@ -1,9 +1,11 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using Drikka.Geo.Data.Contracts.TypesMapping;
 using Drikka.Geo.Data.Converters;
 using Drikka.Geo.Data.ExecutionPlan;
 using Drikka.Geo.Data.Tests.Mappings;
 using Drikka.Geo.Data.TypesMapping;
+using Drikka.Geo.Tests.Common.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpTestsEx;
 
@@ -15,6 +17,7 @@ namespace Drikka.Geo.Data.Tests.ExecutionPlain
         [TestMethod]
         public void GetText_Returns_DeleteText()
         {
+            var person = new Person();
             var mapping = new PersonMap();
             mapping.ExecuteMapping();
 
@@ -25,12 +28,15 @@ namespace Drikka.Geo.Data.Tests.ExecutionPlain
             mock.Setup(x => x.Get(typeof(int))).Returns(mapInt);
             mock.Setup(x => x.Get(typeof(string))).Returns(mapString);
 
+            var dbparam = new Moq.Mock<IDbDataParameter>();
+            Func<IDbDataParameter> func = () => dbparam.Object;
+
             var register = mock.Object;
 
             var insert = new DeletePlan(mapping, register);
-            var text = insert.GetText();
+            var param = insert.CreatePlanParameter(func, person);
 
-            text.ToUpper().Should().Be("DELETE FROM PERSON WHERE ID = @ID");
+            param.SqlText.ToUpper().Should().Be("DELETE FROM PERSON WHERE ID = @ID");
         }
     }
 }

@@ -50,7 +50,10 @@ namespace Drikka.Geo.Data.TypesMapping
             var wkbConverter = new WellKnownBinaryConverter(this._geometryFactory);
             var genericConverter = new GenericConverter();
 
-            var map = new TypeMap(DbType.Int32, typeof(int), genericConverter);
+            var map = new TypeMap(DbType.Int32, typeof(uint), genericConverter);
+            this._typeRegister.Set(map);
+
+            map = new TypeMap(DbType.Int32, typeof(int), genericConverter);
             this._typeRegister.Set(map);
 
             map = new TypeMap(DbType.String, typeof(string), genericConverter);
@@ -66,6 +69,9 @@ namespace Drikka.Geo.Data.TypesMapping
             this._typeRegister.Set(map);
 
             map = new TypeMap(DbType.Binary, typeof(IPolygon), wkbConverter);
+            this._typeRegister.Set(map);
+
+            map = new TypeMap(DbType.Binary, typeof(IGeometry), wkbConverter);
             this._typeRegister.Set(map);
         }
 

@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Text;
+using System.Linq;
 using Drikka.Geo.Data.Contracts.ExecutionPlan;
 using Drikka.Geo.Data.Contracts.Mapping;
 using Drikka.Geo.Data.Contracts.Query;
@@ -53,18 +54,59 @@ namespace Drikka.Geo.Data.ExecutionPlan
 
         #endregion
 
-        #region IQueryplan Implementation
+        #region IQueryPlan Implementation
 
         /// <summary>
-        /// Get command text
+        /// Create Plan Parameters
         /// </summary>
-        /// <returns>Insert command text</returns>
-        public string GetText()
+        /// <returns>Plan Parameters</returns>
+        public IPlanParameters CreatePlanParameter()
         {
-            return this._query;
+            var builder = new StringBuilder();
+            builder.Append(this._query);
+
+            return new PlanParameters(builder.ToString(), new List<IDbDataParameter>());
         }
 
-        public string GetTextById()
+        /// <summary>
+        /// Create Plan Parameters
+        /// </summary>
+        /// <returns>Plan Parameters</returns>
+        public IPlanParameters CreatePlanParameter<T>(IQuery<T> query, Func<IDbDataParameter> parameterFactory)
+        {
+            var builder = new StringBuilder();
+            builder.Append(this._query);
+
+            var criteria = this._queryTranslator.Translate(query);
+
+            if (!string.IsNullOrEmpty(criteria.SqlText) && !string.IsNullOrWhiteSpace(criteria.SqlText))
+            {
+                builder.Append(" WHERE ");
+                builder.Append(criteria.SqlText);
+            }
+
+            var @params = new List<IDbDataParameter>();
+            foreach (var parameter in criteria.Parameters)
+            {
+                var map = this._typeRegister.Get(parameter.DataType);
+
+                var param = parameterFactory();
+                param.Direction = ParameterDirection.Input;
+                param.ParameterName = string.Format("@{0}", parameter.ParamName);
+                param.DbType = map.DbType;
+                param.Value = map.Converter.Write(parameter.Value);
+
+                @params.Add(param);
+            }
+
+            return new PlanParameters(builder.ToString(), @params);
+        }
+
+        /// <summary>
+        /// Create Plan Parameters for select by ID
+        /// </summary>
+        /// <returns>Plan Parameters</returns>
+        public IPlanParameters CreatePlanParameterById(Func<IDbDataParameter> parameterFactory, object id)
         {
             var text = new StringBuilder();
             text.Append(this._query);
@@ -74,64 +116,26 @@ namespace Drikka.Geo.Data.ExecutionPlan
             var @params = names.Select(x => string.Format("{0} = @{0}", x)).ToList();
             text.Append(string.Join(", ", @params));
 
-            return text.ToString();
-        }
-
-        /// <summary>
-        /// Get parameters for a command
-        /// </summary>
-        /// <param name="command">Command</param>
-        /// <param name="id">Domain Object</param>
-        /// <returns>List of parameters</returns>
-        public IDataParameter GetParameter(IDbCommand command, object id)
-        {
-            var @param = this._mapping.IdentifiersMapping.Select(
-                    attribute => CreateParameter(command, id, attribute)).Cast<IDataParameter>().FirstOrDefault();
-           
-            return @param;
-        } 
-
-        /// <summary>
-        /// Get command text
-        /// </summary>
-        /// <returns>Insert command text</returns>
-        public string GetText<T>(IQuery<T> query)
-        {
-            var header = this._query;
-            var criteria = this._queryTranslator.Translate(query);
-
-            if (!string.IsNullOrEmpty(criteria) && !string.IsNullOrWhiteSpace(criteria))
+            var list = new List<IDbDataParameter>();
+            foreach (var attribute in this._mapping.IdentifiersMapping)
             {
-                return string.Format("{0} WHERE {1}", header, criteria);
+                var map = this._typeRegister.Get(attribute.PropertyInfo.PropertyType);
+
+                var param = parameterFactory();
+                param.Direction = ParameterDirection.Input;
+                param.ParameterName = string.Format("@{0}", attribute.FieldName);
+                param.DbType = map.DbType;
+                param.Value = map.Converter.Write(id);
+
+                list.Add(param);
             }
 
-            return header;
+            return new PlanParameters(text.ToString(), list);
         }
 
         #endregion
 
         #region Private Methods
-
-        /// <summary>
-        /// Create parameter
-        /// </summary>
-        /// <param name="command">DbCommand</param>
-        /// <param name="id">Domain</param>
-        /// <param name="attribute">Attribute</param>
-        /// <returns>DataParameter</returns>
-        private IDbDataParameter CreateParameter(IDbCommand command, object id, IAttribute attribute)
-        {
-            var map = this._typeRegister.Get(attribute.PropertyInfo.PropertyType);
-
-            var param = command.CreateParameter();
-
-            param.Direction = ParameterDirection.Input;
-            param.ParameterName = string.Format("@{0}", attribute.FieldName);
-            param.DbType = map.DbType;
-            param.Value = map.Converter.Write(id);
-
-            return param;
-        }
 
         /// <summary>
         /// Create the header text

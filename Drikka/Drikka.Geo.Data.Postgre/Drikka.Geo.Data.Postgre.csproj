@@ -41,7 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query\QueryTranslation.cs" />
+    <Compile Include="Sql\SqlParam.cs" />
+    <Compile Include="Sql\SqlTranslation.cs" />
     <Compile Include="Query\QueryTranslator.cs" />
     <Compile Include="Query\TranslateToSqlMethods.cs" />
   </ItemGroup>
@@ -49,6 +50,10 @@
     <ProjectReference Include="..\Contracts\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
       <Project>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</Project>
       <Name>Drikka.Geo.Data.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Contracts\Drikka.Geo.Geometry.Contracts\Drikka.Geo.Geometry.Contracts.csproj">
+      <Project>{335EF9BD-9A33-4037-B604-87D2696EC9C6}</Project>
+      <Name>Drikka.Geo.Geometry.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Drikka.Geo.Data.Query\Drikka.Geo.Data.Query.csproj">
       <Project>{1796CD23-FA55-44F9-9D38-B87011C36ADD}</Project>

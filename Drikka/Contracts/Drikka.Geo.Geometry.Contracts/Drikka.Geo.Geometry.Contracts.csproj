@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="IEnvelope.cs" />
     <Compile Include="IFeature.cs" />
+    <Compile Include="IFeatureDatabase.cs" />
     <Compile Include="IFeatureSet.cs" />
     <Compile Include="IGeometry.cs" />
     <Compile Include="IGeometryFactory.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="IMapPoint.cs" />
     <Compile Include="IPolygon.cs" />
     <Compile Include="ISpatialReference.cs" />
+    <Compile Include="ISpatialReferenceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

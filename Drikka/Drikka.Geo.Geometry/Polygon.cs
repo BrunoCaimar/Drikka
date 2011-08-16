@@ -58,11 +58,11 @@ namespace Drikka.Geo.Geometry
         /// <returns></returns>
         private IEnvelope CreateEnvelope()
         {
-            var points = new List<MapPoint>();
+            var points = new List<IMapPoint>();
 
             foreach (var linearRing in Rings)
             {
-                points.Concat(linearRing.Vertices);
+                points.AddRange(linearRing.Vertices);
             }
 
             var maxX = points.Select(x => x.X).Max();

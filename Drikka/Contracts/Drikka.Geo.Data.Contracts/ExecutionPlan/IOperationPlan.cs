@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 
 namespace Drikka.Geo.Data.Contracts.ExecutionPlan
 {
@@ -9,18 +8,10 @@ namespace Drikka.Geo.Data.Contracts.ExecutionPlan
     public interface IOperationPlan
     {
         /// <summary>
-        /// Get command text
+        /// Create Plan Parameters
         /// </summary>
-        /// <returns>Insert command text</returns>
-        string GetText();
-
-        /// <summary>
-        /// Get parameters for a command
-        /// </summary>
-        /// <param name="command">Command</param>
-        /// <param name="domain">Domain Object</param>
-        /// <returns>List of parameters</returns>
-        List<IDataParameter> GetParameters(IDbCommand command, object domain);
+        /// <returns>Plan Parameters</returns>
+        IPlanParameters CreatePlanParameter(System.Func<IDbDataParameter> parameterFactory, object domain);        
         
     }
 }

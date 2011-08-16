@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
-using Drikka.Geo.Data.Contracts.Query;
+using Drikka.Geo.Data.Contracts.Sql;
 
-namespace Drikka.Geo.Data.Postgre.Query
+namespace Drikka.Geo.Data.Postgre.Sql
 {
     /// <summary>
     /// Sql translation
     /// </summary>
-    public class QueryTranslation : IQueryTranslation
+    public class SqlTranslation : ISqlTranslation
     {
         #region Properties
 
@@ -18,7 +18,7 @@ namespace Drikka.Geo.Data.Postgre.Query
         /// <summary>
         /// Command parameters
         /// </summary>
-        public IDictionary<string, object> Parameters { get; set; }
+        public IList<ISqlParam> Parameters { get; set; }
 
         #endregion
 
@@ -27,9 +27,9 @@ namespace Drikka.Geo.Data.Postgre.Query
         /// <summary>
         /// Constructor
         /// </summary>
-        public QueryTranslation()
+        public SqlTranslation()
         {
-            this.Parameters = new Dictionary<string, object>();
+            this.Parameters = new List<ISqlParam>();
         }
 
         #endregion
