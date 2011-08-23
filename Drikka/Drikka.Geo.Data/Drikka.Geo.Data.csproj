@@ -43,12 +43,15 @@
     <Compile Include="Binders\BindManager.cs" />
     <Compile Include="Binders\ObjectBinder.cs" />
     <Compile Include="Converters\GenericConverter.cs" />
+    <Compile Include="Converters\Int32Converter.cs" />
     <Compile Include="Converters\WellKnownBinaryConverter.cs" />
+    <Compile Include="ExecutionPlan\UpdatePlan.cs" />
     <Compile Include="ExecutionPlan\DeletePlan.cs" />
     <Compile Include="ExecutionPlan\ExecutionPlanManager.cs" />
     <Compile Include="ExecutionPlan\InsertPlan.cs" />
     <Compile Include="ExecutionPlan\PlanParameters.cs" />
     <Compile Include="ExecutionPlan\QueryPlain.cs" />
+    <Compile Include="KeyGenerator\IdentityKeyGenerator.cs" />
     <Compile Include="Parsers\WkbGeometryTypes.cs" />
     <Compile Include="Parsers\WkbWriter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

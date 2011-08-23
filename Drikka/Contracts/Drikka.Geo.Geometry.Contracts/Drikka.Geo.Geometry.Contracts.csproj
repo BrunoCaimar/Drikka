@@ -54,6 +54,12 @@
     <Compile Include="ISpatialReferenceFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Drikka.Geo.Data.Contracts\Drikka.Geo.Data.Contracts.csproj">
+      <Project>{C91916B3-D96F-4384-B9DE-FAF8D9EA55C3}</Project>
+      <Name>Drikka.Geo.Data.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Drikka.Geo.Data.Contracts.Query;
 using Drikka.Geo.Data.Contracts.Repository;
 using Drikka.Geo.Geometry.Contracts;
 
@@ -92,6 +93,17 @@ namespace Drikka.Geo.Geometry
         public void Delete(T domain)
         {
             this._repository.Delete(domain);
+        }
+
+        /// <summary>
+        /// Execute query statement for domain
+        /// </summary>
+        /// <typeparam name="T">Domain type</typeparam>
+        /// <param name="query">Query</param>
+        /// <returns>List of domains</returns>
+        public IList<T> Query(IQuery<T> query)
+        {
+            return this._repository.Query(query).Select(this.SetSpatialReference).ToList();
         }
 
         #endregion

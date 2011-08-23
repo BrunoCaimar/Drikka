@@ -54,7 +54,7 @@ namespace Drikka.Geo.Data.ExecutionPlan
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>plan</returns>
-        public virtual IOperationPlan GetInsertplan(Type type)
+        public virtual IOperationPlan GetInsertPlan(Type type)
         {
             var map = this._mappingManager.GetMapping(type);
             var insert = new InsertPlan(map, this._typeRegister);
@@ -63,11 +63,24 @@ namespace Drikka.Geo.Data.ExecutionPlan
         }
 
         /// <summary>
+        /// Get update plan for a given type
+        /// </summary>
+        /// <param name="type">Type</param>
+        /// <returns>plan</returns>
+        public IOperationPlan GetUpdatePlan(Type type)
+        {
+            var map = this._mappingManager.GetMapping(type);
+            var update = new UpdatePlan(map, this._typeRegister);
+
+            return update;
+        }
+
+        /// <summary>
         /// Get select plan for a given type
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>plan</returns>
-        public virtual IQueryPlan GetQueryplan(Type type)
+        public virtual IQueryPlan GetQueryPlan(Type type)
         {
             var map = this._mappingManager.GetMapping(type);
             var query = new QueryPlan(map, this._queryTranslator, this._typeRegister);
@@ -80,7 +93,7 @@ namespace Drikka.Geo.Data.ExecutionPlan
         /// </summary>
         /// <param name="type">Type</param>
         /// <returns>plan</returns>
-        public virtual IOperationPlan GetDeleteplan(Type type)
+        public virtual IOperationPlan GetDeletePlan(Type type)
         {
             var map = this._mappingManager.GetMapping(type);
             var delete = new DeletePlan(map, this._typeRegister);

@@ -21,7 +21,7 @@ namespace Drikka.Geo.Data.Contracts.Mapping
         /// <summary>
         /// AttributesMappings
         /// </summary>
-        IList<IAttribute> IdentifiersMapping { get; }
+        IList<IIdentifier> IdentifiersMapping { get; }
 
         /// <summary>
         /// AttributesMappings

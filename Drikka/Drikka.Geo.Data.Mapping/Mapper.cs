@@ -46,7 +46,7 @@ namespace Drikka.Geo.Data.Mapping
         /// <summary>
         /// AttributesMappings
         /// </summary>
-        public IList<IAttribute> IdentifiersMapping { get; private set; }
+        public IList<IIdentifier> IdentifiersMapping { get; private set; }
 
         /// <summary>
         /// AttributesMappings
@@ -77,7 +77,7 @@ namespace Drikka.Geo.Data.Mapping
         protected Mapper()
         {
             this.AttributesMappings = new List<IAttribute>();
-            this.IdentifiersMapping = new List<IAttribute>();
+            this.IdentifiersMapping = new List<IIdentifier>();
             this.AllMapping = new List<IAttribute>();
 
             this._byFieldName = new SortedDictionary<string, IAttribute>(new CaseInsensitiveComparer());
@@ -178,7 +178,7 @@ namespace Drikka.Geo.Data.Mapping
         /// <param name="attribName">Attribute name</param>
         /// <param name="fieldName">Field name</param>
         /// <param name="attribute">Attribute</param>
-        private void AddIdentifier(string attribName, string fieldName, IAttribute attribute)
+        private void AddIdentifier(string attribName, string fieldName, IIdentifier attribute)
         {
             this._byFieldName.Add(fieldName, attribute);
             this._byPropName.Add(attribName, attribute);

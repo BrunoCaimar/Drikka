@@ -43,11 +43,13 @@
     <Compile Include="Binders\IBinder.cs" />
     <Compile Include="Binders\IBindManager.cs" />
     <Compile Include="ExecutionPlan\IExecutionPlanManager.cs" />
+    <Compile Include="ExecutionPlan\IInsertKeygen.cs" />
     <Compile Include="ExecutionPlan\IOperationPlan.cs" />
     <Compile Include="ExecutionPlan\IPlanParameters.cs" />
     <Compile Include="ExecutionPlan\IQueryPlan.cs" />
     <Compile Include="Mapping\DmlType.cs" />
     <Compile Include="Mapping\IAttribute.cs" />
+    <Compile Include="Mapping\IIdentifier.cs" />
     <Compile Include="Mapping\IMapping.cs" />
     <Compile Include="Mapping\IMappingManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

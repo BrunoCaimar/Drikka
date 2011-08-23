@@ -6,6 +6,7 @@ using Drikka.Geo.Tests.Common.Entities;
 using Drikka.Geo.Tests.Common.IoC;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Drikka.Geo.Data.Query;
+using SharpTestsEx;
 
 namespace Drikka.Geo.Data.Tests.Repositories
 {
@@ -16,18 +17,41 @@ namespace Drikka.Geo.Data.Tests.Repositories
         [DeploymentItem("TestsDatabase.sdf")]
         public void InsertTests()
         {
-            //var kernel = new NinjectContainer();
-            //var maps = kernel.Resolve<IMappingManager>();
-            //var executer = kernel.Resolve<StatementExecuter>();
-            //var person = new Person {Age = 25, Id = 1, Name = "Alaor"};
-            //var types = kernel.Resolve<BasicTypesMap>();
+            var kernel = new NinjectContainer();
+            var maps = kernel.Resolve<IMappingManager>();
+            var types = kernel.Resolve<BasicTypesMap>();
 
-            //maps.LoadFromAssembly(typeof(PersonMap).Assembly);
-            //types.MapTypes();
+            maps.LoadFromAssembly(typeof(PersonMap).Assembly);
+            types.MapTypes();
+            
+            var executer = kernel.Resolve<GenericDomainsRepository<Person>>();
+            var person = new Person { Age = 25,Id = 0, Name = "Alaor" };
 
-            //executer.Insert(person);
+            executer.Save(person);
 
-            //executer.Insert(person);
+            person.Id.Should().Not.Be(0);
+        }
+
+        [TestMethod]
+        [DeploymentItem("TestsDatabase.sdf")]
+        public void UpdateTests()
+        {
+            var kernel = new NinjectContainer();
+            var maps = kernel.Resolve<IMappingManager>();
+            var types = kernel.Resolve<BasicTypesMap>();
+
+            maps.LoadFromAssembly(typeof(PersonMap).Assembly);
+            types.MapTypes();
+
+            var executer = kernel.Resolve<GenericDomainsRepository<Person>>();
+            var result = executer.Get(1);
+
+            result.Name = "Novo Nome";
+            executer.Update(result);
+
+            result = executer.Get(1);
+
+            result.Name.Should().Be("Novo Nome");
         }
 
         [TestMethod]
@@ -36,11 +60,12 @@ namespace Drikka.Geo.Data.Tests.Repositories
         {
             var kernel = new NinjectContainer();
             var maps = kernel.Resolve<IMappingManager>();
-            var executer = kernel.Resolve <GenericDomainsRepository<Person>>();
             var types = kernel.Resolve<BasicTypesMap>();
 
             maps.LoadFromAssembly(typeof(PersonMap).Assembly);
             types.MapTypes();
+
+            var executer = kernel.Resolve<GenericDomainsRepository<Person>>();
 
             var result = executer.GetAll();
 
@@ -54,11 +79,12 @@ namespace Drikka.Geo.Data.Tests.Repositories
         {
             var kernel = new NinjectContainer();
             var maps = kernel.Resolve<IMappingManager>();
-            var executer = kernel.Resolve<GenericDomainsRepository<Person>>();
             var types = kernel.Resolve<BasicTypesMap>();
 
             maps.LoadFromAssembly(typeof(PersonMap).Assembly);
             types.MapTypes();
+
+            var executer = kernel.Resolve<GenericDomainsRepository<Person>>();
 
             var query = new Query<Person>();
             query.Where(x => x.Name).Equal("Alaor").And(x => x.Age).Equal(28).And(x => x.Id).GreaterThan(0);
@@ -75,12 +101,12 @@ namespace Drikka.Geo.Data.Tests.Repositories
         {
             var kernel = new NinjectContainer();
             var maps = kernel.Resolve<IMappingManager>();
-            var executer = kernel.Resolve<GenericDomainsRepository<City>>();
             var types = kernel.Resolve<BasicTypesMap>();
 
             maps.LoadFromAssembly(typeof(CityMap).Assembly);
             types.MapTypes();
 
+            var executer = kernel.Resolve<GenericDomainsRepository<City>>();
             var result = executer.Get(1);
 
             Assert.IsNotNull(result);
@@ -93,11 +119,12 @@ namespace Drikka.Geo.Data.Tests.Repositories
         {
             var kernel = new NinjectContainer();
             var maps = kernel.Resolve<IMappingManager>();
-            var executer = kernel.Resolve<GenericDomainsRepository<City>>();
             var types = kernel.Resolve<BasicTypesMap>();
 
             maps.LoadFromAssembly(typeof(CityMap).Assembly);
             types.MapTypes();
+
+            var executer = kernel.Resolve<GenericDomainsRepository<City>>();
 
             var result = executer.Get(2);
             Assert.IsNotNull(result);

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Drikka.Geo.Data.Contracts.Query;
 
 namespace Drikka.Geo.Geometry.Contracts
 {
@@ -26,5 +27,13 @@ namespace Drikka.Geo.Geometry.Contracts
         /// </summary>
         /// <param name="domain"></param>
         void Delete(T domain);
+
+        /// <summary>
+        /// Execute query statement for domain
+        /// </summary>
+        /// <typeparam name="T">Domain type</typeparam>
+        /// <param name="query">Query</param>
+        /// <returns>List of domains</returns>
+        IList<T> Query(IQuery<T> query);
     }
 }

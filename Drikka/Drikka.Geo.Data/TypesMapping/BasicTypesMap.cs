@@ -49,11 +49,12 @@ namespace Drikka.Geo.Data.TypesMapping
         {
             var wkbConverter = new WellKnownBinaryConverter(this._geometryFactory);
             var genericConverter = new GenericConverter();
+            var int32Converter = new Int32Converter();
 
             var map = new TypeMap(DbType.Int32, typeof(uint), genericConverter);
             this._typeRegister.Set(map);
 
-            map = new TypeMap(DbType.Int32, typeof(int), genericConverter);
+            map = new TypeMap(DbType.Int32, typeof(int), int32Converter);
             this._typeRegister.Set(map);
 
             map = new TypeMap(DbType.String, typeof(string), genericConverter);

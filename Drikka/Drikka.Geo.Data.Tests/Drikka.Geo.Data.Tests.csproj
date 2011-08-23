@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Binders\ObjectBinderTest.cs" />
+    <Compile Include="ExecutionPlain\UpdatePlanTest.cs" />
     <Compile Include="Mappings\CityMap.cs" />
     <Compile Include="Parser\WkbWriterTests.cs" />
     <Compile Include="Repositories\GenericDomainsRepositoryTests.cs" />

@@ -12,9 +12,9 @@ using Drikka.Geo.Data.Contracts.TypesMapping;
 namespace Drikka.Geo.Data.ExecutionPlan
 {
     /// <summary>
-    /// plan to execute insert for a given type
+    /// plan to execute update for a given type
     /// </summary>
-    public class InsertPlan : IOperationPlan
+    public class UpdatePlan : IOperationPlan
     {
 
         #region Fields
@@ -43,11 +43,11 @@ namespace Drikka.Geo.Data.ExecutionPlan
         /// </summary>
         /// <param name="mapping">Type mapping</param>
         /// <param name="typeRegister">Container</param>
-        public InsertPlan(IMapping mapping, ITypeRegister typeRegister)
+        public UpdatePlan(IMapping mapping, ITypeRegister typeRegister)
         {
             this._mapping = mapping;
             this._typeRegister = typeRegister;
-            this._text = this.GetInsertText();
+            this._text = this.GetUpdateText();
         }
 
         #endregion
@@ -62,7 +62,7 @@ namespace Drikka.Geo.Data.ExecutionPlan
         {
             var list = new List<IDbDataParameter>();
 
-            foreach (var attribute in this._mapping.AttributesMappings)
+            foreach (var attribute in this._mapping.AllMapping)
             {
                 var map = this._typeRegister.Get(attribute.PropertyInfo.PropertyType);
 
@@ -84,23 +84,27 @@ namespace Drikka.Geo.Data.ExecutionPlan
         /// <summary>
         /// Get command text
         /// </summary>
-        /// <returns>Insert command text</returns>
-        private string GetInsertText()
+        /// <returns>Update command text</returns>
+        private string GetUpdateText()
         {
             var text = new StringBuilder();
-            text.Append("INSERT INTO ");
+            text.Append("UPDATE ");
             text.Append(this._mapping.TableName);
-            text.Append(" (");
+            text.Append(" SET ");
 
-            var names = this._mapping.AttributesMappings.Select(attribute => attribute.FieldName).ToList();
+            var names = this._mapping.AttributesMappings
+                .Select(attribute => String.Format("{0} = @{0}", attribute.FieldName)).ToList();
+
             text.Append(string.Join(", ", names));
 
-            text.Append(") VALUES (");
+            var namesIds = this._mapping.IdentifiersMapping
+                .Select(attribute => String.Format("{0} = @{0}", attribute.FieldName)).ToList();
 
-            var @params = names.Select(x => string.Format("@{0}", x)).ToList();
-            text.Append(string.Join(", ", @params));
-
-            text.Append(")");
+            if (namesIds.Count > 0)
+            {
+                text.Append(" WHERE ");
+                text.Append(string.Join(", ", namesIds));
+            }
 
             return text.ToString();
         }

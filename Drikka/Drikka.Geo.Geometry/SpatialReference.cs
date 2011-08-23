@@ -14,6 +14,11 @@ namespace Drikka.Geo.Geometry
         /// </summary>
         public int Srid { get; set; }
 
+        /// <summary>
+        /// FeatureSet Name
+        /// </summary>
+        public string FeatureSetName{ get; set; }
+
         #endregion
 
         #region Constructor

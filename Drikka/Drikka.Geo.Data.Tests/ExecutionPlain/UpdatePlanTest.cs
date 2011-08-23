@@ -12,11 +12,11 @@ using SharpTestsEx;
 namespace Drikka.Geo.Data.Tests.ExecutionPlain
 {
     [TestClass]
-    public class InsertPlanTest
+    public class UpdatePlanTest
     {
         [TestMethod]
         //[Ignore]
-        public void GetText_Returns_InsertText()
+        public void GetText_Returns_UpdateText()
         {
             var person = new Person();
             var mapping = new PersonMap();
@@ -34,10 +34,11 @@ namespace Drikka.Geo.Data.Tests.ExecutionPlain
 
             var register = mock.Object;
 
-            var insert = new InsertPlan(mapping, register);
+            var insert = new UpdatePlan(mapping, register);
             var text = insert.CreatePlanParameter(func, person);
 
-            text.SqlText.ToUpper().Should().Be("INSERT INTO PERSON (NAME, AGE) VALUES (@NAME, @AGE)");
+            text.SqlText.ToUpper().Should().Be("UPDATE PERSON SET NAME = @NAME, AGE = @AGE WHERE ID = @ID");
+            text.Parameters.Count.Should().Be(3);
         }
     }
 }

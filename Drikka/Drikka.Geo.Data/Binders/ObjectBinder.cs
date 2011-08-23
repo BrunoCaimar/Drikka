@@ -72,7 +72,7 @@ namespace Drikka.Geo.Data.Binders
         private Info[] CreateCache(IDataRecord record)
         {
             var array = new Info[record.FieldCount];
-            var mappings = this._mapping.AllMapping;
+            //var mappings = this._mapping.AllMapping;
 
             for (int i = 0; i < record.FieldCount; i++)
             {
